@@ -1,15 +1,21 @@
-function Button({ text, bgColor, textColor ,onClick }) {
+import React from 'react';
+
+function Button({ text, variant = "primary", className = "", onClick }) {
+  const baseClasses = "flex items-center justify-center font-roboto font-[600] rounded-full transition-all duration-300 whitespace-nowrap cursor-pointer border-none";
+
+  const variants = {
+    primary: "bg-[#026FE3] text-white shadow-lg shadow-blue-500/30 hover:bg-blue-600 hover:shadow-blue-500/50 hover:scale-105",
+    white: "bg-white text-[#026FE3] shadow-lg hover:shadow-xl hover:scale-105",
+    whiteFlat: "bg-white text-[#026FE3] hover:bg-gray-100"
+  };
+
+  const combinedClasses = `${baseClasses} ${variants[variant] || variants.primary} ${className}`;
+
   return (
-    <button className="flexfont-roboto font-[600] text-[36px] 
-    leading-[25px] items-center justify-center capatalize 
-    rounded-[36.83px]  w-auto px-[57px] py-[24px]"
-    style={{
-        backgroundColor: bgColor,
-        color: textColor
-    }}
-    onClick={onClick}>
+    <button className={combinedClasses} onClick={onClick}>
       {text}
     </button>
   );
 }
+
 export default Button;

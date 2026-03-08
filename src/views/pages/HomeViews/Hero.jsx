@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Button from "../../components/Button";
 
 export default function Hero() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -37,14 +38,12 @@ export default function Hero() {
 
                     {/* Actions (Request Demo Btn & Hamburger Menu) */}
                     <div className="flex items-center gap-4">
-                        <button 
-                            className="hidden md:flex items-center justify-center bg-white py-3 px-6 xl:px-8 rounded-full shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300"
+                        <Button 
+                            text="Request Demo"
+                            variant="white"
+                            className="hidden md:flex py-3 px-6 xl:px-8 text-sm xl:text-base"
                             onClick={() => alert("Request Demo clicked")}
-                        >
-                            <span className="text-[#026FE3] text-sm xl:text-base font-bold whitespace-nowrap">
-                                Request Demo
-                            </span>
-                        </button>
+                        />
 
                         {/* Mobile Menu Icon */}
                         <button
@@ -65,14 +64,12 @@ export default function Hero() {
                                 {item}
                             </button>
                         ))}
-                        <button 
-                            className="md:hidden w-full flex items-center justify-center bg-white py-3 px-6 rounded-full mt-4 hover:bg-gray-100 transition-colors"
+                        <Button 
+                            text="Request Demo"
+                            variant="whiteFlat"
+                            className="md:hidden w-full py-3 px-6 mt-4 text-base"
                             onClick={() => { alert("Request Demo clicked"); setIsMenuOpen(false); }}
-                        >
-                            <span className="text-[#026FE3] text-base font-bold">
-                                Request Demo
-                            </span>
-                        </button>
+                        />
                     </div>
                 </header>
 
@@ -92,12 +89,12 @@ export default function Hero() {
                         Transform how your teams work with spatial data through intelligent automation. Built for enterprise scale, designed for effortless collaboration.
                     </p>
                     
-                    <button 
-                        className="bg-[#026FE3] text-white py-4 md:py-5 px-10 md:px-16 rounded-full text-lg md:text-2xl font-bold shadow-lg shadow-blue-500/30 hover:bg-blue-600 hover:shadow-blue-500/50 hover:scale-105 transition-all duration-300 border-none cursor-pointer"
+                    <Button 
+                        text="Request Demo"
+                        variant="primary"
+                        className="py-4 md:py-5 px-10 md:px-16 text-lg md:text-2xl"
                         onClick={() => alert("Request Demo clicked")}
-                    >
-                        Request Demo
-                    </button>
+                    />
                 </div>
             </div>
 

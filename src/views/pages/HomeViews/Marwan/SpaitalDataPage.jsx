@@ -13,8 +13,18 @@ function SpaitalDataPage() {
                 </h3>
             </div>
             <div className="flex items-center gap-4">
-                <Button text="Contact Us" bgColor="#FFFFFF" textColor="#026FE3" onClick={() => { }} />
-                <Button text="Request Demo" bgColor="#026FE3" textColor="#FFFFFF" onClick={() => { }} />
+                <Button 
+                    text="Contact Us" 
+                    variant="white"
+                    className="py-4 md:py-5 px-10 md:px-16 text-lg md:text-2xl"
+                    onClick={() => { }} 
+                />
+                <Button 
+                    text="Request Demo" 
+                    variant="primary"
+                    className="py-4 md:py-5 px-10 md:px-16 text-lg md:text-2xl"
+                    onClick={() => { }} 
+                />
             </div>
         </div>
     );
