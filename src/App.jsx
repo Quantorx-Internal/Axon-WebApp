@@ -1,5 +1,5 @@
-import TodoPage from './views/pages/TodoPage';
+import Home from './views/pages/Home';
 
 export default function App() {
-  return <TodoPage />;
+  return <Home />;
 }
