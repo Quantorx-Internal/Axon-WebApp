@@ -1,5 +1,5 @@
 
-import IndustryButton from "../components/IndustryButton";
+import IndustryButton from "../../../components/IndustryButton";
 
 function IndustryPage() {
     return (

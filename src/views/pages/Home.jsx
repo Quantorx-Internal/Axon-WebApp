@@ -5,6 +5,9 @@ import TrustedWorldwide from "./HomeViews/TrustedWorldwide";
 import PlatformShowcase from "./HomeViews/PlatformShowcase";
 import Enterprise from "./HomeViews/Enterprise";
 import CloudEcosystem from "./HomeViews/CloudEcosystem";
+import IndustryPage from "./HomeViews/Marwan/IndustryPage";
+import PlansPage from "./HomeViews/Marwan/PlansPage";
+import SpatialDataPage from "./HomeViews/Marwan/SpaitalDataPage";
 
 export default function Home(props) {
     return (
@@ -16,6 +19,9 @@ export default function Home(props) {
             <PlatformShowcase />
             <Enterprise />
             <CloudEcosystem />
+            <IndustryPage />
+            <SpatialDataPage />
+            <PlansPage />
         </div>
     );
 }
