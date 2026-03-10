@@ -70,25 +70,35 @@ export default function PlatformUsers() {
             <div className="w-full max-w-7xl flex flex-col lg:flex-row gap-8 lg:gap-16 items-start relative">
 
                 {/* Left Side: Tabs */}
-                <div className="w-full lg:w-1/3 flex flex-row lg:flex-col overflow-x-auto lg:overflow-x-visible pb-4 lg:pb-0 gap-6 lg:gap-12 pl-4 lg:pl-12 shrink-0 hide-scrollbar snap-x">
+                <div className="relative w-full lg:w-1/3 flex flex-row lg:flex-col overflow-x-auto lg:overflow-x-visible pb-4 lg:pb-0 gap-6 lg:gap-0 pl-4 lg:pl-12 lg:pr-10 shrink-0 hide-scrollbar snap-x h-auto lg:justify-between lg:min-h-[400px]">
+                    
+                    {/* Slider Track & Thumb (Desktop Only) */}
+                    <div className="hidden lg:block absolute right-0 top-2 bottom-2 w-1.5 bg-gray-200 rounded-full">
+                        <div 
+                            className="absolute left-0 w-full bg-[#026FE3] rounded-full transition-all duration-500 ease-in-out shadow-md"
+                            style={{
+                                height: `${100 / tabs.length}%`,
+                                top: `${(100 / tabs.length) * activeTab}%`
+                            }}
+                        />
+                    </div>
+
                     {tabs.map((tab, idx) => (
-                        <button
-                            key={idx}
-                            onClick={() => setActiveTab(idx)}
-                            className={`flex items-center gap-4 cursor-pointer group snap-start whitespace-nowrap bg-transparent border-none ${activeTab === idx ? 'opacity-100' : 'opacity-60 hover:opacity-80'} transition-opacity`}
-                        >
-                            <tab.Icon
-                                className={`w-6 h-6 md:w-8 md:h-8 transition-all duration-300 shrink-0 ${activeTab === idx ? 'scale-110 text-[#036FE2]' : 'text-[#717171]'}`}
-                            />
-                            <span className={`text-xl md:text-2xl lg:text-3xl font-bold transition-colors duration-300 ${activeTab === idx ? 'text-[#036FE2]' : 'text-[#717171]'}`}>
-                                {tab.name}
-                            </span>
-                        </button>
+                        <div key={idx} className="flex lg:flex-1 lg:items-center flex-shrink-0">
+                            <button
+                                onClick={() => setActiveTab(idx)}
+                                className={`flex items-center gap-4 cursor-pointer group snap-start whitespace-nowrap bg-transparent border-none ${activeTab === idx ? 'opacity-100' : 'opacity-60 hover:opacity-80'} transition-opacity`}
+                            >
+                                <tab.Icon
+                                    className={`w-6 h-6 md:w-8 md:h-8 transition-all duration-300 shrink-0 ${activeTab === idx ? 'scale-110 text-[#026FE3]' : 'text-[#717171]'}`}
+                                />
+                                <span className={`text-xl md:text-2xl lg:text-3xl font-bold transition-colors duration-300 tracking-wide ${activeTab === idx ? 'text-[#026FE3]' : 'text-[#717171]'}`}>
+                                    {tab.name.toUpperCase()}
+                                </span>
+                            </button>
+                        </div>
                     ))}
                 </div>
-
-                {/* Vertical Divider (Desktop only) */}
-                <div className="hidden lg:block absolute left-1/3 top-0 bottom-0 w-px bg-gray-200" />
 
                 {/* Right Side: Tab Content Container */}
                 <div className="w-full lg:w-2/3 flex-1">
