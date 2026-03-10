@@ -1,14 +1,13 @@
 
 import IndustryButton from "../../../components/IndustryButton";
 
-function IndustryPage() {
+function Industry() {
     return (
-        <div className="relative flex flex-col items-center justify-center overflow-hidden h-screen">
-            <img
-                src="/Industry-Cover.jpg"
-                alt="Industry Cover"
-                className="absolute inset-0 w-full h-full object-cover opacity-40"
-            />
+        <section
+            className=" absloute flex flex-col items-center justify-center text-center bg-cover bg-center bg-no-repeat min-h-0 md:min-h-[600px] md:max-h-[800px] w-full px-4"
+            style={{ backgroundImage: 'url(/Industry-Cover.jpg)' }}
+        >
+        <div className="relative flex flex-col items-center justify-center overflow-hidden min-h-0 md:h-screen bg-[#ffffff]/70 w-screen py-10 md:py-0">
             <div className="relative flex flex-col items-center w-full max-w-[1552px] px-4 sm:px-6 md:px-10 gap-6 md:gap-12">
                 <div className="flex flex-col items-center w-full py-6 md:py-140 px-2 md:px-188">
                     <p className="font-Roboto text-2xl sm:text-4xl md:text-[53.45px] font-[900] leading-tight md:leading-[67px] tracking-[-1.34px] text-center uppercase w-full">
@@ -33,6 +32,7 @@ function IndustryPage() {
                 </div>
             </div>
         </div>
+        </section>
     );
 }
-export default IndustryPage;
+export default Industry;
