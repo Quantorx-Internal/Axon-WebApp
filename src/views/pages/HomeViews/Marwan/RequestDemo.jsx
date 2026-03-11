@@ -13,13 +13,14 @@ const selectBase =
 export default function RequestDemo() {
    const [errors, setErrors] = useState({});
    const [phone,setPhone] =useState("");
-   const[displayPhone,setDisplayPhone] = useState("")
+   const[displayPhone,setDisplayPhone] = useState("");
         const [formData, setFormData] = useState({
             firstName: "",
             lastName: "",
             email: "",
             phone: "",
             company: "",
+            companyName: "",
             jobTitle: "",
             employees: "",
             storage: "",
@@ -40,10 +41,13 @@ export default function RequestDemo() {
             newErrors.company = "Company name is required";
             if (!formData.jobTitle)
             newErrors.jobTitle="Please select a job title";
+
+            if (!formData.companyName.trim())
+            newErrors.companyName = "Company name is required";
             if (!formData.employees)
-            newErrors.employees="Please select number of emlpoyees";
-
-
+            newErrors.employees="Please select number of employees";
+            if (phone.length < 12)
+            newErrors.phone = "Enter a valid phone number";
             return newErrors;
         };
             const handleSubmit = (e) => {
@@ -112,44 +116,66 @@ export default function RequestDemo() {
                             onChange={(e) => setFormData({ ...formData, company: e.target.value })}
                          />
                         {errors.company && <p className="text-red-400 text-xs mt-1">{errors.company}</p>}
-                    </div>
-                    <div className="col-span-2">
-                        <PhoneInput 
-                        country="Egypt" 
-                        value={phone} 
-                        onChange={(value) =>  setPhone(value)} 
-                            />
-                    </div>
-                    </div>
-                    <div className="relative flex-1">
-                        <select
-                            className={selectBase}
-                            value={formData.jobTitle}
-                            onChange={(e) => setFormData({ ...formData, jobTitle: e.target.value })}
-                        >
-                            <option value="" disabled>Job Title</option>
-                        </select>
-                        <IoIosArrowDown className="absolute right-4 top-1/2 -translate-y-1/2 text-white pointer-events-none" />
-                        {errors.jobTitle && <p className="text-red-400 text-xs mt-1">{errors.jobTitle}</p>}
-                        </div>
-                    </div>
+                </div>
+                <div className="col-span-2">
+                    <PhoneInput
+                       country="eg"
+                        value={phone}
+                        onChange={(value, countryData) => {
+                          setPhone(value);
+                          setDisplayPhone(`+${countryData.dialCode}${value.slice(countryData.dialCode.length)}`);
+                            }}
+                        countryCodeEditable={false}
+                        enableLongNumbers={false} 
+                        inputProps={{
+                        maxLength: 18
+                      }}
+                      masks={{
+                        eg: '... ... ....' // +20 XXX XXX XXX XXXX
+                      }}
+                      containerClass="!w-full"
+                      inputClass="!w-full !bg-[#0B1E36] !text-white !placeholder-white !border !border-[#FFFFFF3D] focus:!outline-none focus:!ring-2 focus:!ring-blue-500 !rounded-lg !py-3 !pl-11 !pr-4 !text-base !h-auto"
+                      buttonClass="!bg-[#0B1E36] !border !border-[#FFFFFF3D] !rounded-l-lg !border-r-0 hover:!bg-[#0B1E36]"
+                      dropdownClass="!bg-[#0B1E36] !text-white !border !border-[#FFFFFF3D] [&_.country:hover]:!bg-[#1a3a5c] [&_.country.highlight]:!bg-[#1a3a5c]"
+                      searchClass="!bg-[#0B1E36] !text-white !border !border-[#FFFFFF3D]"
+                  />
+                  {errors.phone && <p className="text-red-400 text-xs mt-1">{errors.phone}</p>}
+                </div>
+              </div>
+              <div className="relative flex-1">
+                  <select
+                      className={selectBase}
+                      value={formData.jobTitle}
+                      onChange={(e) => setFormData({ ...formData, jobTitle: e.target.value })}
+                  >
+                      <option value="" disabled>Job Title</option>
+                  </select>
+                  <IoIosArrowDown className="absolute right-4 top-1/2 -translate-y-1/2 text-white pointer-events-none" />
+                  {errors.jobTitle && <p className="text-red-400 text-xs mt-1">{errors.jobTitle}</p>}
+            </div>
+          </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div className="relative">
-          <input type="text" placeholder="Company name" className={inputBase} />
+                <input
+                    type="text"
+                    placeholder="Company Name"
+                    className={inputBase}
+                    value={formData.companyName}
+                    onChange={(e) => setFormData({ ...formData, companyName: e.target.value })}
+                />
+                {errors.companyName && <p className="text-red-400 text-xs mt-1">{errors.companyName}</p>}
             </div>
-            <div className="relative flex-1">
-            <select 
-            className={selectBase} 
-            value= {formData.employees}
-            onChange={(e) => setFormData({ ...formData, employees: e.target.value })}
-            >
-        
-                <option value="" disabled> Number of employees</option>
-            </select>
-             <IoIosArrowDown className="absolute right-4 top-1/2 -translate-y-1/2 text-white pointer-events-none" />
-            {errors.employees && <p className="text-red-400 text-xs mt-1">{errors.employees}</p>}
+            <div className="relative">
+                <select 
+                    className={selectBase} 
+                    value={formData.employees}
+                    onChange={(e) => setFormData({ ...formData, employees: e.target.value })}
+                >
+                    <option value="" disabled>Number of employees</option>
+                </select>
+                <IoIosArrowDown className="absolute right-4 top-1/2 -translate-y-1/2 text-white pointer-events-none" />
+                {errors.employees && <p className="text-red-400 text-xs mt-1">{errors.employees}</p>}
             </div>
-                
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 items-start">
   <div className="relative flex-1">
