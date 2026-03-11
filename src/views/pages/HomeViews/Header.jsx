@@ -1,38 +1,25 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Button from "../../components/Button";
 
 export default function Header() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
-    const [isScrolled, setIsScrolled] = useState(false);
-
-    useEffect(() => {
-        const handleScroll = () => {
-            setIsScrolled(window.scrollY > 50);
-        };
-        window.addEventListener("scroll", handleScroll);
-        return () => window.removeEventListener("scroll", handleScroll);
-    }, []);
 
     return (
         <>
-            {/* Fixed Floating Header Wrapper */}
-            <div className={`fixed top-0 left-0 right-0 z-[100] transition-all duration-500 flex justify-center ${isScrolled ? 'pt-4 px-4' : 'pt-6 md:pt-12 px-4 md:px-8'}`}>
-                <header className={`w-full flex justify-between items-center transition-all duration-500 rounded-full border
-                    ${isScrolled
-                        ? 'max-w-6xl bg-[#E2E8F0]/85 backdrop-blur-xl px-5 py-2 md:px-6 md:py-3 shadow-lg border-white/60'
-                        : 'max-w-7xl bg-transparent border-transparent'}`}
-                >
+            {/* Standard Fixed Header Container */}
+            <div className="absolute top-0 left-0 right-0 z-[100] py-6 px-4 md:px-8 flex justify-center bg-transparent">
+                <header className="w-full max-w-7xl flex justify-between items-center">
                     {/* Logos */}
                     <div className="flex items-center gap-4 md:gap-8">
                         <img
                             src="/HeaderLogo.png"
                             alt="Logo"
-                            className={`h-auto object-contain transition-all duration-300 ${isScrolled ? 'w-20 md:w-28 lg:w-32 [filter:invert(1)_hue-rotate(180deg)_brightness(1.5)]' : 'w-24 md:w-32 lg:w-40'}`}
+                            className="h-auto object-contain w-24 md:w-32 lg:w-40"
                         />
                         <img
                             src="/QuantLogo.png"
                             alt="Quant"
-                            className={`h-auto object-contain transition-all duration-300 ${isScrolled ? 'w-14 md:w-20 lg:w-24 [filter:invert(1)_hue-rotate(180deg)_brightness(1.5)]' : 'w-16 md:w-24 lg:w-28'}`}
+                            className="h-auto object-contain w-16 md:w-24 lg:w-28"
                         />
                     </div>
 
@@ -40,8 +27,7 @@ export default function Header() {
                     <nav className="hidden lg:flex items-center gap-8 xl:gap-14">
                         {["Platform", "Solution", "Customers", "Resources"].map((item) => (
                             <button key={item}
-                                className={`text-base xl:text-lg font-semibold transition-colors bg-transparent border-none cursor-pointer
-                                    ${isScrolled ? 'text-[#031125] hover:text-[#026FE3]' : 'text-white hover:text-[#47A0FF]'}`}
+                                className="text-base xl:text-lg font-semibold text-white hover:text-[#47A0FF] transition-colors bg-transparent border-none cursor-pointer"
                             >
                                 {item}
                             </button>
@@ -52,8 +38,8 @@ export default function Header() {
                     <div className="flex items-center gap-4">
                         <Button
                             text="Request Demo"
-                            variant={isScrolled ? "primary" : "white"}
-                            className={`hidden md:flex py-3 transition-all duration-300 ${isScrolled ? 'px-5 xl:px-7 text-sm' : 'px-6 xl:px-8 text-sm xl:text-base'}`}
+                            variant="white"
+                            className="hidden md:flex py-3 px-6 xl:px-8 text-sm xl:text-base"
                             onClick={() => alert("Request Demo clicked")}
                         />
 
@@ -63,9 +49,9 @@ export default function Header() {
                             onClick={() => setIsMenuOpen(!isMenuOpen)}
                             aria-label="Toggle menu"
                         >
-                            <span className={`w-6 h-0.5 rounded transition-all duration-300 ${isMenuOpen ? 'rotate-45 translate-y-1.5' : '-translate-y-1'} ${isScrolled && !isMenuOpen ? 'bg-[#031125]' : 'bg-white'}`} />
-                            <span className={`w-6 h-0.5 rounded transition-all duration-300 ${isMenuOpen ? 'opacity-0' : 'opacity-100'} ${isScrolled && !isMenuOpen ? 'bg-[#031125]' : 'bg-white'}`} />
-                            <span className={`w-6 h-0.5 rounded transition-all duration-300 ${isMenuOpen ? '-rotate-45 -translate-y-1.5' : 'translate-y-1'} ${isScrolled && !isMenuOpen ? 'bg-[#031125]' : 'bg-white'}`} />
+                            <span className={`w-6 h-0.5 rounded transition-all duration-300 bg-white ${isMenuOpen ? 'rotate-45 translate-y-1.5' : '-translate-y-1'}`} />
+                            <span className={`w-6 h-0.5 rounded transition-all duration-300 bg-white ${isMenuOpen ? 'opacity-0' : 'opacity-100'}`} />
+                            <span className={`w-6 h-0.5 rounded transition-all duration-300 bg-white ${isMenuOpen ? '-rotate-45 -translate-y-1.5' : 'translate-y-1'}`} />
                         </button>
                     </div>
                 </header>

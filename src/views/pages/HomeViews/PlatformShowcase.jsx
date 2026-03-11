@@ -25,15 +25,28 @@ export default function PlatformShowcase() {
             title: "Advanced Data Integration",
             desc: "Seamlessly connect and analyze layers from any global data warehouse or database directly within a single unified view.",
             img: "https://storage.googleapis.com/tagjs-prod.appspot.com/v1/292NacUvQT/n1b1unav_expires_30_days.png"
+        },
+        {
+            id: 4,
+            num: "4",
+            title: "Predictive Analytics",
+            desc: "Anticipate market trends and optimize resource allocation with advanced predictive models built directly into the platform.",
+            img: "https://storage.googleapis.com/tagjs-prod.appspot.com/v1/292NacUvQT/fcqes9jt_expires_30_days.png"
+        },
+        {
+            id: 5,
+            num: "5",
+            title: "Automated Workflows",
+            desc: "Trigger intelligent actions automatically based on spatial rules, saving thousands of hours in manual work.",
+            img: "https://storage.googleapis.com/tagjs-prod.appspot.com/v1/292NacUvQT/n1b1unav_expires_30_days.png"
         }
     ];
 
     const activeItem = items[activeIndex];
-    const nextItem = items[(activeIndex + 1) % items.length];
-
-    const handleNextClick = () => {
-        setActiveIndex((prev) => (prev + 1) % items.length);
-    };
+    const inactiveItems = [
+        { item: items[(activeIndex + 1) % items.length], indexOffset: 1 },
+        { item: items[(activeIndex + 2) % items.length], indexOffset: 2 }
+    ];
 
     const PinIcon = ({ number, isActive }) => (
         <div className={`relative shrink-0 flex items-center justify-center w-20 h-24 md:w-24 md:h-28 transition-all duration-500 ease-in-out ${isActive ? 'scale-100 opacity-100' : 'scale-90 opacity-60'}`}>
@@ -50,8 +63,8 @@ export default function PlatformShowcase() {
     const transitionSettings = { duration: 0.5, ease: [0.32, 0.72, 0, 1] };
 
     return (
-        <section className="w-full bg-[#f4f8fc] py-16 md:py-24 relative overflow-hidden">
-            <div className="container mx-auto px-6 lg:px-12 flex flex-col items-center relative z-10 max-w-7xl">
+        <section className="w-full bg-[#f4f8fc] py-16 md:py-24 xl:py-32 relative overflow-hidden">
+            <div className="container mx-auto px-6 lg:px-12 xl:px-16 flex flex-col items-center relative z-10 max-w-[1600px]">
                 
                 {/* Header Section */}
                 <div className="text-center mb-16 md:mb-24 flex flex-col items-center relative">
@@ -84,7 +97,7 @@ export default function PlatformShowcase() {
                     </div>
 
                     {/* Left Column - Active Step */}
-                    <div className="w-full lg:w-1/2 relative z-10 min-h-[500px]">
+                    <div className="w-full lg:w-[40%] xl:w-[35%] relative z-10 min-h-[500px] flex flex-col justify-end">
                         <AnimatePresence mode="popLayout">
                             <motion.div 
                                 key={`active-${activeItem.id}`}
@@ -118,53 +131,65 @@ export default function PlatformShowcase() {
                         </AnimatePresence>
                     </div>
 
-                    {/* Right Column - Next Step (Inactive, Clickable) */}
-                    <div className="w-full lg:w-1/2 mt-12 lg:mt-32 relative z-10 group cursor-pointer min-h-[500px]" onClick={handleNextClick}>
+                    {/* Right Column - Next Steps (Inactive, Clickable) */}
+                    <div className="w-full lg:w-[60%] xl:w-[65%] mt-12 lg:mt-0 relative z-10 flex flex-col lg:flex-row gap-8 lg:gap-6 min-h-[500px] items-end">
                         <AnimatePresence mode="popLayout">
-                            <motion.div 
-                                key={`next-${nextItem.id}`}
-                                initial={{ opacity: 0, x: 50, scale: 0.95 }}
-                                animate={{ opacity: 1, x: 0, scale: 1 }}
-                                exit={{ opacity: 0, x: -50, scale: 0.95 }}
-                                transition={transitionSettings}
-                                className="w-full flex flex-col items-center lg:items-start"
-                            >
-                                <div className="flex flex-col sm:flex-row items-center sm:items-start text-center sm:text-left gap-6 lg:gap-8 mb-10 w-full relative z-10">
-                                    {/* Decorative background curve */}
-                                    <div className="absolute -z-10 w-[200%] h-[200%] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-60 pointer-events-none hidden lg:block transition-all duration-700 group-hover:opacity-100 group-hover:scale-105"
-                                        style={{
-                                            backgroundImage: 'url(https://storage.googleapis.com/tagjs-prod.appspot.com/v1/292NacUvQT/2ba63xfj_expires_30_days.png)',
-                                            backgroundSize: 'contain',
-                                            backgroundRepeat: 'no-repeat',
-                                            backgroundPosition: 'center'
-                                        }}
-                                    />
-                                    <PinIcon number={nextItem.num} isActive={false} />
-                                    <div className="flex flex-col gap-2 mt-2 bg-[#f4f8fc]/80 backdrop-blur-sm rounded-xl px-2 opacity-80 group-hover:opacity-100 transition-opacity duration-300">
-                                        <h3 className="text-[#031021]/60 text-xl md:text-2xl font-bold group-hover:text-[#031021] transition-colors">
-                                            {nextItem.title}
-                                        </h3>
-                                        <p className="text-[#030E1F]/50 text-sm leading-relaxed max-w-md mx-auto sm:mx-0 group-hover:text-[#030E1F]/80 transition-colors">
-                                            {nextItem.desc}
-                                        </p>
+                            {inactiveItems.map(({ item, indexOffset }) => (
+                                <motion.div 
+                                    key={`next-${item.id}`}
+                                    layout
+                                    initial={{ opacity: 0, x: 50, scale: 0.95 }}
+                                    animate={{ opacity: 1, x: 0, scale: 1 }}
+                                    exit={{ opacity: 0, x: -50, scale: 0.95 }}
+                                    transition={transitionSettings}
+                                    className={`w-full flex flex-col items-center group cursor-pointer transition-all duration-500 origin-bottom ${
+                                        indexOffset === 1 
+                                            ? 'lg:w-[55%] scale-95 hover:scale-100' 
+                                            : 'lg:w-[45%] scale-[0.80] opacity-60 hover:opacity-100 hover:scale-[0.85]'
+                                    }`}
+                                    onClick={() => setActiveIndex((prev) => (prev + indexOffset) % items.length)}
+                                >
+                                    <div className={`flex flex-col items-center text-center gap-4 mb-8 w-full relative z-10 mt-0 ${indexOffset === 1 ? 'lg:mt-10' : 'lg:mt-24'}`}>
+                                        {/* Decorative background curve */}
+                                        <div className="absolute -z-10 w-[200%] h-[200%] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-60 pointer-events-none hidden lg:block transition-all duration-700 group-hover:opacity-100 group-hover:scale-105"
+                                            style={{
+                                                backgroundImage: 'url(https://storage.googleapis.com/tagjs-prod.appspot.com/v1/292NacUvQT/2ba63xfj_expires_30_days.png)',
+                                                backgroundSize: 'contain',
+                                                backgroundRepeat: 'no-repeat',
+                                                backgroundPosition: 'center'
+                                            }}
+                                        />
+                                        <PinIcon number={item.num} isActive={false} />
+                                        <div className="flex flex-col gap-2 mt-2 bg-[#f4f8fc]/80 backdrop-blur-sm rounded-xl px-2 opacity-80 group-hover:opacity-100 transition-opacity duration-300">
+                                            <h3 className="text-[#031021]/60 text-lg md:text-xl font-bold group-hover:text-[#031021] transition-colors">
+                                                {item.title}
+                                            </h3>
+                                            <p className="text-[#030E1F]/50 text-xs md:text-sm leading-relaxed max-w-xs mx-auto group-hover:text-[#030E1F]/80 transition-colors">
+                                                {item.desc}
+                                            </p>
+                                        </div>
                                     </div>
-                                </div>
 
-                                {/* Inactive Image (Blurred) */}
-                                <div className="w-full lg:w-[90%] lg:ml-auto relative z-20 opacity-70 group-hover:opacity-95 blur-[6px] group-hover:blur-[2px] transition-all duration-500 scale-95 group-hover:scale-[0.98]">
-                                    <img
-                                        src={nextItem.img}
-                                        alt={nextItem.title}
-                                        className="w-full h-auto object-contain drop-shadow-2xl rounded-xl border border-gray-100"
-                                    />
-                                    {/* Click to focus overlay */}
-                                    <div className="absolute inset-0 flex items-center justify-center bg-white/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-xl">
-                                        <span className="bg-[#47A0FF] text-white px-6 py-2 rounded-full font-semibold shadow-lg backdrop-blur-md translate-y-4 group-hover:translate-y-0 transition-all duration-300">
-                                            Click to Focus
-                                        </span>
+                                    {/* Inactive Image (Blurred) */}
+                                    <div className={`w-full relative z-20 mt-auto transition-all duration-500 rounded-xl ${
+                                        indexOffset === 2 
+                                            ? 'opacity-60 blur-[5px] group-hover:blur-[2px]' 
+                                            : 'opacity-80 group-hover:opacity-100 blur-[3px] group-hover:blur-0'
+                                    }`}>
+                                        <img
+                                            src={item.img}
+                                            alt={item.title}
+                                            className="w-full h-auto object-contain drop-shadow-2xl rounded-xl border border-gray-100"
+                                        />
+                                        {/* Click to focus overlay */}
+                                        <div className="absolute inset-0 flex items-center justify-center bg-white/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-xl">
+                                            <span className="bg-[#47A0FF] text-white px-6 py-2 rounded-full font-semibold shadow-lg backdrop-blur-md translate-y-4 group-hover:translate-y-0 transition-all duration-300">
+                                                Click to Focus
+                                            </span>
+                                        </div>
                                     </div>
-                                </div>
-                            </motion.div>
+                                </motion.div>
+                            ))}
                         </AnimatePresence>
                     </div>
 

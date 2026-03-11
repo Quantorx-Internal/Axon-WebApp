@@ -270,7 +270,7 @@ export default function RequestDemo() {
               By submitting my personal information I accept the Privacy Notice
             </p>
           </div>
-          <button type="submit" className="flex items-center justify-center gap-2 bg-[#036FE2] hover:bg-[#0258B8] text-white font-Roboto font-[600] text-lg rounded-full py-3 px-4 sm:p-2 transition-colors flex-shrink-0">
+          <button type="submit" className="flex items-center justify-center gap-2 bg-[#036FE2] hover:bg-[#0258B8] text-white font-Roboto font-[600] text-lg rounded-full py-3 px-6 md:px-12 transition-colors flex-shrink-0 w-fit mt-4 md:mt-0 mx-auto md:mx-0">
             Request a demo <FaArrowRight />
           </button>
         </div>
