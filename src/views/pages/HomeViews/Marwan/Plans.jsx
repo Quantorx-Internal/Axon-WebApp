@@ -75,67 +75,77 @@ export default function Plans() {
         </p>
       </div>
 
-      {/* ── Mobile: horizontal-scroll cards ── */}
-      <div className="md:hidden overflow-x-auto pb-4">
-        <div className="inline-flex gap-4 px-4">
+      {/*  Mobile View  */}
+      <div className="md:hidden overflow-x-auto pt-6 pb-4">
+        <div
+          className="inline-grid px-4 gap-x-4"
+          style={{ gridTemplateColumns: 'repeat(3, min(75vw, 300px))' }}
+        >
+          {/* Header row — one cell per plan, CSS grid aligns heights automatically */}
           {plansData.map((plan) => (
             <div
-              key={plan.title}
-              className="flex flex-col w-[75vw] min-w-[260px] flex-shrink-0 rounded-xl overflow-hidden border border-[#D9D9D9] bg-[#EFEFEF]"
+              key={`header-${plan.title}`}
+              className="relative flex flex-col justify-between p-5 gap-3 bg-[#EFEFEF] rounded-t-xl border border-[#D9D9D9] overflow-visible"
             >
-              {/* Card header */}
-              <div className="relative flex flex-col p-5 gap-3 bg-[#EFEFEF] border-b border-[#D9D9D9]">
+              <div className="flex flex-col gap-3">
                 {plan.badge && (
-                  <div className="absolute -top-0 left-0 right-0 flex justify-center">
-                    <span className="bg-[#21B3E6] text-white text-xs tracking-[0.7px] font-[500] rounded-full uppercase py-1.5 px-4">
+                  <div className="absolute top-0 left-0 right-0 flex translate-y-[-15px] justify-center">
+                    <span className="bg-[#21B3E6] text-white text-xs tracking-[0.7px] font-[500] rounded-full uppercase py-2 px-4">
                       Most Popular
                     </span>
                   </div>
                 )}
-                <h2 className={`font-Roboto font-[600] text-2xl leading-[32px] text-[#162945] ${plan.badge ? 'mt-5' : ''}`}>
+                <h2 className="font-Roboto font-[600] text-2xl leading-[32px] text-[#162945]">
                   {plan.title}
                 </h2>
                 <p className="font-Roboto font-[400] text-sm leading-[22px] text-[#162945]">
                   {plan.description}
                 </p>
-                <Button
-                  text="Get A Quote"
-                  variant={plan.colour ? "primary" : "transparent"}
-                  className="w-full py-2.5"
-                  onClick={() => {}}
-                />
               </div>
-
-              {/* Feature rows */}
-              <div className="flex flex-col">
-                {plan.features.map((feat, i) => (
-                  <div
-                    key={feat.label}
-                    className={`flex flex-col gap-1 px-5 py-4 ${i < plan.features.length - 1 ? 'border-b border-[#D9D9D9]' : ''}`}
-                  >
-                    <span className="font-Roboto font-[700] text-sm leading-[20px] text-[#036FE2] uppercase">
-                      {feat.label}
-                    </span>
-                    {feat.subtitle && (
-                      <span className="font-Roboto font-[400] text-xs leading-[16px] text-[#036FE2] opacity-70">
-                        {feat.subtitle}
-                      </span>
-                    )}
-                    {feat.image && <MobileDeploymentIcons />}
-                    {feat.values.map((val) => (
-                      <span key={val} className="font-Roboto font-[400] text-base leading-[26px] text-[#162945]">
-                        {val}
-                      </span>
-                    ))}
-                  </div>
-                ))}
-              </div>
+              <Button
+                text="Get A Quote"
+                variant={plan.colour ? "primary" : "transparent"}
+                className="w-full py-2.5"
+                onClick={() => {}}
+              />
             </div>
           ))}
+
+          {/* Feature rows — outer loop = row (feature index), inner loop = column (plan)
+              flatMap produces a flat list so CSS grid places items left→right, top→bottom,
+              meaning all three cells for the same feature end up in the same grid row and
+              share the same height automatically. */}
+          {plansData[0].features.flatMap((_, featIdx) =>
+            plansData.map((plan) => {
+              const feat = plan.features[featIdx];
+              const isLast = featIdx === plansData[0].features.length - 1;
+              return (
+                <div
+                  key={`${plan.title}-feat-${featIdx}`}
+                  className={`flex flex-col gap-1 px-5 py-4 bg-[#EFEFEF] border-l border-r border-b border-[#D9D9D9]${isLast ? ' rounded-b-xl' : ''}`}
+                >
+                  <span className="font-Roboto font-[700] text-sm leading-[20px] text-[#036FE2] uppercase">
+                    {feat.label}
+                  </span>
+                  {feat.subtitle && (
+                    <span className="font-Roboto font-[400] text-xs leading-[16px] text-[#036FE2] opacity-70">
+                      {feat.subtitle}
+                    </span>
+                  )}
+                  {feat.image && <MobileDeploymentIcons />}
+                  {feat.values.map((val) => (
+                    <span key={val} className="font-Roboto font-[400] text-base leading-[26px] text-[#162945]">
+                      {val}
+                    </span>
+                  ))}
+                </div>
+              );
+            })
+          )}
         </div>
       </div>
 
-      {/* ── Desktop: original grid table ── */}
+      {/* Desktop view */}
       <div className="hidden md:block overflow-x-auto px-4 md:px-0 max-w-[1400px] mx-auto">
         <div className="min-w-[900px]" style={{ display: 'grid', gridTemplateColumns: 'minmax(auto, 400px) repeat(3, 1fr)' }}>
           <div />

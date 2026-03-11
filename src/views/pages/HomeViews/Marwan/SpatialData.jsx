@@ -16,13 +16,13 @@ function SpaitalData() {
                     <Button 
                         text="Contact Us" 
                         variant="white"
-                        className="w-full sm:w-auto py-4 md:py-5 px-10 md:px-16 text-lg md:text-2xl"
+                        className="w-full sm:w-auto py-3 md:py-5 px-8 md:px-16 text-base md:text-2xl"
                         onClick={() => { }} 
                     />
                     <Button 
                         text="Request Demo" 
                         variant="primary"
-                        className="w-full sm:w-auto py-4 md:py-5 px-10 md:px-16 text-lg md:text-2xl"
+                        className="w-full sm:w-auto py-3 md:py-5 px-8 md:px-16 text-base md:text-2xl"
                         onClick={() => { }} 
                     />
                 </div>

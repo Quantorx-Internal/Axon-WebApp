@@ -2,13 +2,65 @@ import { FaArrowRight } from "react-icons/fa";
 import { IoIosArrowDown } from "react-icons/io";
 import PhoneInput from 'react-phone-input-2';
 import 'react-phone-input-2/lib/style.css';
-import {useState} from "react";
+import {useState, useRef, useEffect} from "react";
 
 const inputBase =
   "w-full bg-[#0B1E36] text-white placeholder:text-white border border-[#FFFFFF3D] focus:outline-none focus:ring-2 focus:ring-blue-500 rounded-lg py-3 px-4 text-base";
 
 const selectBase =
   "w-full bg-[#0B1E36] text-white border border-[#FFFFFF3D] focus:outline-none focus:ring-2 focus:ring-blue-500 rounded-lg py-3 px-4 text-base appearance-none cursor-pointer";
+
+const jobTitleOptions = ["CEO / Founder", "CTO", "VP of Engineering", "Engineering Manager", "Product Manager", "Data Scientist", "GIS Analyst", "Developer", "Other"];
+const employeeOptions = ["1-10", "11-50", "51-200", "201-500", "501-1000", "1001-5000", "5000+"];
+const storageOptions = ["AWS S3", "Google Cloud Storage", "Azure Blob", "PostgreSQL / PostGIS", "Snowflake", "Databricks", "Other"];
+
+function AnimatedDropdown({ placeholder, options, value, onChange, disabled, error }) {
+  const [open, setOpen] = useState(false);
+  const ref = useRef(null);
+
+  useEffect(() => {
+    function handleClickOutside(e) {
+      if (ref.current && !ref.current.contains(e.target)) setOpen(false);
+    }
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
+  return (
+    <div ref={ref} className="relative">
+      <button
+        type="button"
+        disabled={disabled}
+        onClick={() => !disabled && setOpen((prev) => !prev)}
+        className={`${selectBase} flex items-center justify-between text-left ${disabled ? "opacity-50 cursor-not-allowed" : ""} ${!value ? "text-white" : "text-white"}`}
+      >
+        <span className={value ? "text-white" : "text-white"}>{value || placeholder}</span>
+        <IoIosArrowDown className={`text-white transition-transform duration-300 ${open ? "rotate-180" : ""}`} />
+      </button>
+
+      <div
+        className={`absolute z-50 left-0 right-0 mt-1 bg-[#0B1E36] border border-[#FFFFFF3D] rounded-lg overflow-hidden transition-all duration-300 origin-top ${
+          open ? "opacity-100 scale-y-100 max-h-60" : "opacity-0 scale-y-0 max-h-0"
+        }`}
+      >
+        <ul className="overflow-y-auto max-h-60 py-1">
+          {options.map((opt) => (
+            <li
+              key={opt}
+              onClick={() => { onChange(opt); setOpen(false); }}
+              className={`px-4 py-2.5 text-sm cursor-pointer transition-colors duration-150 hover:bg-[#1a3a5c] ${
+                value === opt ? "bg-[#1a3a5c] text-white" : "text-[#CFCFCF]"
+              }`}
+            >
+              {opt}
+            </li>
+          ))}
+        </ul>
+      </div>
+      {error && <p className="text-red-400 text-xs mt-1">{error}</p>}
+    </div>
+  );
+}
 
 export default function RequestDemo() {
    const [errors, setErrors] = useState({});
@@ -143,15 +195,13 @@ export default function RequestDemo() {
                 </div>
               </div>
               <div className="relative flex-1">
-                  <select
-                      className={selectBase}
-                      value={formData.jobTitle}
-                      onChange={(e) => setFormData({ ...formData, jobTitle: e.target.value })}
-                  >
-                      <option value="" disabled>Job Title</option>
-                  </select>
-                  <IoIosArrowDown className="absolute right-4 top-1/2 -translate-y-1/2 text-white pointer-events-none" />
-                  {errors.jobTitle && <p className="text-red-400 text-xs mt-1">{errors.jobTitle}</p>}
+                  <AnimatedDropdown
+                    placeholder="Job Title"
+                    options={jobTitleOptions}
+                    value={formData.jobTitle}
+                    onChange={(val) => setFormData({ ...formData, jobTitle: val })}
+                    error={errors.jobTitle}
+                  />
             </div>
           </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -166,29 +216,25 @@ export default function RequestDemo() {
                 {errors.companyName && <p className="text-red-400 text-xs mt-1">{errors.companyName}</p>}
             </div>
             <div className="relative">
-                <select 
-                    className={selectBase} 
+                <AnimatedDropdown
+                    placeholder="Number of employees"
+                    options={employeeOptions}
                     value={formData.employees}
-                    onChange={(e) => setFormData({ ...formData, employees: e.target.value })}
-                >
-                    <option value="" disabled>Number of employees</option>
-                </select>
-                <IoIosArrowDown className="absolute right-4 top-1/2 -translate-y-1/2 text-white pointer-events-none" />
-                {errors.employees && <p className="text-red-400 text-xs mt-1">{errors.employees}</p>}
+                    onChange={(val) => setFormData({ ...formData, employees: val })}
+                    error={errors.employees}
+                />
             </div>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 items-start">
   <div className="relative flex-1">
-    <select
-      className={`${selectBase} ${formData.geospatial === "No" ? "opacity-50 cursor-not-allowed" : ""}`}
-      disabled={formData.geospatial === "No"}
+    <AnimatedDropdown
+      placeholder="Where do you store your geospatial data?"
+      options={storageOptions}
       value={formData.storage}
-      onChange={(e) => setFormData({ ...formData, storage: e.target.value })}
-    >
-      <option value="" disabled>Where do you store your geospatial data?</option>
-    </select>
-        <IoIosArrowDown className="absolute right-4 top-1/2 -translate-y-1/2 text-white pointer-events-none" />
-     </div>
+      onChange={(val) => setFormData({ ...formData, storage: val })}
+      disabled={formData.geospatial === "No"}
+    />
+  </div>
 
         <div>
             <p className="text-white text-sm mb-2">Do you use geospatial technology already?</p>
@@ -224,7 +270,7 @@ export default function RequestDemo() {
               By submitting my personal information I accept the Privacy Notice
             </p>
           </div>
-          <button type="submit" className="flex items-center justify-center gap-2 bg-[#036FE2] hover:bg-[#0258B8] text-white font-Roboto font-[600] text-lg rounded-full py-3 px-8 transition-colors flex-shrink-0">
+          <button type="submit" className="flex items-center justify-center gap-2 bg-[#036FE2] hover:bg-[#0258B8] text-white font-Roboto font-[600] text-lg rounded-full py-3 px-4 sm:p-2 transition-colors flex-shrink-0">
             Request a demo <FaArrowRight />
           </button>
         </div>
