@@ -8,10 +8,12 @@ import CloudEcosystem from "./HomeViews/CloudEcosystem";
 import Industry from "./HomeViews/Marwan/Industry";
 import SpatialData from "./HomeViews/Marwan/SpatialData";
 import Plans from "./HomeViews/Marwan/Plans";
+import RequestDemo from "./HomeViews/Marwan/RequestDemo";
+import Footer from "./HomeViews/Marwan/Footer"
 
 export default function Home(props) {
     return (
-        <div className="flex flex-col bg-white w-full overflow-x-hidden">
+        <div className="flex flex-col bg-white w-full">
             <Hero />
             <TestCases />
             <PlatformUsers />
@@ -22,6 +24,8 @@ export default function Home(props) {
             <Industry />
             <SpatialData />
             <Plans />
+            <RequestDemo />
+            <Footer />
         </div>
     );
 }

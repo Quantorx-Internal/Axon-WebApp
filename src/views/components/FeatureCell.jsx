@@ -2,7 +2,7 @@ export default function FeatureCell({ text, image ,text2 ,text3,text4,text5,text
   return (
     <div className="flex flex-col justify-center items-left  px-8 p-6 border-b border-r bg-[#EFEFEF] border-[#D9D9D9]">
       {image && (
-        <div className="relative flex flex-row flex-wrap gap-2 justify-start items-center px-3 mb-2 ">
+        <div className="relative flex flex-row gap-2 justify-start items-center px-3 mb-2 ">
           <img src="/CloudIconClean.png" alt="Cloud" className="w-10 h-10 shrink-0 object-contain border border-[#D9D9D9]" />
           <img src="/AWSIconClean.png" alt="AWS" className="w-10 h-10 shrink-0 object-contain border border-[#D9D9D9]" />
           <img src="/AzureIconClean.png" alt="Azure" className="w-10 h-10 shrink-0 object-contain border border-[#D9D9D9]" />
