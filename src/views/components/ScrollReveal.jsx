@@ -1,0 +1,43 @@
+import React, { useState, useEffect } from "react";
+import { useInView } from "react-intersection-observer";
+import { cn } from "../../lib/utils";
+
+export const ScrollReveal = ({
+  children,
+  className,
+  delay = 0,
+}) => {
+  const [hasAnimated, setHasAnimated] = useState(false);
+  const [isVisible, setIsVisible] = useState(false);
+
+  const { ref, inView } = useInView({
+    threshold: 0.1,
+    triggerOnce: true,
+  });
+
+  useEffect(() => {
+    if (inView && !hasAnimated) {
+      const timer = setTimeout(() => {
+        setIsVisible(true);
+        setHasAnimated(true);
+      }, delay);
+
+      return () => clearTimeout(timer);
+    }
+  }, [inView, hasAnimated, delay]);
+
+  return (
+    <div
+      ref={ref}
+      className={cn(
+        "transition-all duration-1000 ease-out", 
+        isVisible
+          ? "opacity-100 translate-y-0"
+          : "opacity-0 translate-y-8", 
+        className
+      )}
+    >
+      {children}
+    </div>
+  );
+};
