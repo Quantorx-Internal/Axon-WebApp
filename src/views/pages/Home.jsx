@@ -5,13 +5,15 @@ import TrustedWorldwide from "./HomeViews/TrustedWorldwide";
 import PlatformShowcase from "./HomeViews/PlatformShowcase";
 import Enterprise from "./HomeViews/Enterprise";
 import CloudEcosystem from "./HomeViews/CloudEcosystem";
-import IndustryPage from "./HomeViews/Marwan/IndustryPage";
-import PlansPage from "./HomeViews/Marwan/PlansPage";
-import SpatialDataPage from "./HomeViews/Marwan/SpaitalDataPage";
+import Industry from "./HomeViews/Marwan/Industry";
+import SpatialData from "./HomeViews/Marwan/SpatialData";
+import Plans from "./HomeViews/Marwan/Plans";
+import RequestDemo from "./HomeViews/Marwan/RequestDemo";
+import Footer from "./HomeViews/Marwan/Footer"
 
 export default function Home(props) {
     return (
-        <div className="flex flex-col bg-white w-full overflow-x-hidden">
+        <div className="flex flex-col bg-white w-full">
             <Hero />
             <TestCases />
             <PlatformUsers />
@@ -19,9 +21,11 @@ export default function Home(props) {
             <PlatformShowcase />
             <Enterprise />
             <CloudEcosystem />
-            <IndustryPage />
-            <SpatialDataPage />
-            <PlansPage />
+            <Industry />
+            <SpatialData />
+            <Plans />
+            <RequestDemo />
+            <Footer />
         </div>
     );
 }
