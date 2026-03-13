@@ -2,6 +2,7 @@ import PlanHeader from "../../../components/PlanHeader";
 import RowLabel from "../../../components/RowLabel";
 import FeatureCell from "../../../components/FeatureCell";
 import Button from "../../../components/Button";
+import { scrollTo } from "@/lib/scrollTo";
 
 const plansData = [
   {
@@ -106,7 +107,7 @@ export default function Plans() {
                 text="Get A Quote"
                 variant={plan.colour ? "primary" : "transparent"}
                 className="w-full py-2.5"
-                onClick={() => {}}
+                onClick={() => scrollTo("request-demo", 80)}
               />
             </div>
           ))}

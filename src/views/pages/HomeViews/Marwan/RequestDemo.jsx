@@ -2,7 +2,7 @@ import { FaArrowRight } from "react-icons/fa";
 import { IoIosArrowDown } from "react-icons/io";
 import PhoneInput from 'react-phone-input-2';
 import 'react-phone-input-2/lib/style.css';
-import {useState, useRef, useEffect} from "react";
+import { useState, useRef, useEffect } from "react";
 
 const inputBase =
   "w-full bg-[#0B1E36] text-white placeholder:text-white border border-[#FFFFFF3D] focus:outline-none focus:ring-2 focus:ring-blue-500 rounded-lg py-3 px-4 text-base";
@@ -39,18 +39,16 @@ function AnimatedDropdown({ placeholder, options, value, onChange, disabled, err
       </button>
 
       <div
-        className={`absolute z-50 left-0 right-0 mt-1 bg-[#0B1E36] border border-[#FFFFFF3D] rounded-lg overflow-hidden transition-all duration-300 origin-top ${
-          open ? "opacity-100 scale-y-100 max-h-60" : "opacity-0 scale-y-0 max-h-0"
-        }`}
+        className={`absolute z-50 left-0 right-0 mt-1 bg-[#0B1E36] border border-[#FFFFFF3D] rounded-lg overflow-hidden transition-all duration-300 origin-top ${open ? "opacity-100 scale-y-100 max-h-60" : "opacity-0 scale-y-0 max-h-0"
+          }`}
       >
         <ul className="overflow-y-auto max-h-60 py-1">
           {options.map((opt) => (
             <li
               key={opt}
               onClick={() => { onChange(opt); setOpen(false); }}
-              className={`px-4 py-2.5 text-sm cursor-pointer transition-colors duration-150 hover:bg-[#1a3a5c] ${
-                value === opt ? "bg-[#1a3a5c] text-white" : "text-[#CFCFCF]"
-              }`}
+              className={`px-4 py-2.5 text-sm cursor-pointer transition-colors duration-150 hover:bg-[#1a3a5c] ${value === opt ? "bg-[#1a3a5c] text-white" : "text-[#CFCFCF]"
+                }`}
             >
               {opt}
             </li>
@@ -63,54 +61,54 @@ function AnimatedDropdown({ placeholder, options, value, onChange, disabled, err
 }
 
 export default function RequestDemo() {
-   const [errors, setErrors] = useState({});
-   const [phone,setPhone] =useState("");
-   const[displayPhone,setDisplayPhone] = useState("");
-        const [formData, setFormData] = useState({
-            firstName: "",
-            lastName: "",
-            email: "",
-            phone: "",
-            company: "",
-            companyName: "",
-            jobTitle: "",
-            employees: "",
-            storage: "",
-            geospatial: "No",
-        });
-        const validate = () => {
-            const newErrors = {};
+  const [errors, setErrors] = useState({});
+  const [phone, setPhone] = useState("");
+  const [displayPhone, setDisplayPhone] = useState("");
+  const [formData, setFormData] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+    phone: "",
+    company: "",
+    companyName: "",
+    jobTitle: "",
+    employees: "",
+    storage: "",
+    geospatial: "No",
+  });
+  const validate = () => {
+    const newErrors = {};
 
-            if (!/^[a-zA-Z]{2,}$/.test(formData.firstName))
-            newErrors.firstName = "Enter a valid first name";
+    if (!/^[a-zA-Z]{2,}$/.test(formData.firstName))
+      newErrors.firstName = "Enter a valid first name";
 
-            if (!/^[a-zA-Z]{2,}$/.test(formData.lastName))
-            newErrors.lastName = "Enter a valid last name";
+    if (!/^[a-zA-Z]{2,}$/.test(formData.lastName))
+      newErrors.lastName = "Enter a valid last name";
 
-            if (!/^\w+([.-]?\w+)@\w+([.-]?\w+)(.\w{2,3})+$/.test(formData.email))
-            newErrors.email = "Enter a valid email";
-            if (!formData.company.trim())
-            newErrors.company = "Company name is required";
-            if (!formData.jobTitle)
-            newErrors.jobTitle="Please select a job title";
+    if (!/^\w+([.-]?\w+)@\w+([.-]?\w+)(.\w{2,3})+$/.test(formData.email))
+      newErrors.email = "Enter a valid email";
+    if (!formData.company.trim())
+      newErrors.company = "Company name is required";
+    if (!formData.jobTitle)
+      newErrors.jobTitle = "Please select a job title";
 
-            if (!formData.companyName.trim())
-            newErrors.companyName = "Company name is required";
-            if (!formData.employees)
-            newErrors.employees="Please select number of employees";
-            if (phone.length < 12)
-            newErrors.phone = "Enter a valid phone number";
-            return newErrors;
-        };
-            const handleSubmit = (e) => {
-            e.preventDefault();
-            const newErrors = validate();
-            if (Object.keys(newErrors).length > 0) {
-            setErrors(newErrors);
-            return;
-            }
-        };
-    return (
+    if (!formData.companyName.trim())
+      newErrors.companyName = "Company name is required";
+    if (!formData.employees)
+      newErrors.employees = "Please select number of employees";
+    if (phone.length < 12)
+      newErrors.phone = "Enter a valid phone number";
+    return newErrors;
+  };
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const newErrors = validate();
+    if (Object.keys(newErrors).length > 0) {
+      setErrors(newErrors);
+      return;
+    }
+  };
+  return (
     <section className="w-full bg-[#031125] py-10 md:py-16 px-4 mt-20">
       <div className="flex flex-col items-center text-center max-w-5xl mx-auto">
         <h2 className="font-Roboto text-3xl md:text-5xl text-white font-[900] leading-tight tracking-[-0.21px]">
@@ -122,149 +120,149 @@ export default function RequestDemo() {
       </div>
 
       <form onSubmit={handleSubmit} className="flex flex-col gap-5 max-w-6xl mx-auto mt-10">
-       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div className="grid grid-cols-2 gap-4">
-                <div>
-                <input
-                    type="text"
-                    placeholder="First name"
-                    className={inputBase}
-                    value={formData.firstName}
-                    onChange={(e) => setFormData({ ...formData, firstName: e.target.value })}
-                />
-                {errors.firstName && <p className="text-red-400 text-xs mt-1">{errors.firstName}</p>}
-                </div>
-                <div>
-                <input
-                    type="text"
-                    placeholder="Last name"
-                    className={inputBase}
-                    value={formData.lastName}
-                    onChange={(e) => setFormData({ ...formData, lastName: e.target.value })}
-                />
-                {errors.lastName && <p className="text-red-400 text-xs mt-1">{errors.lastName}</p>}
-                </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="grid grid-cols-2 gap-4">
+            <div>
+              <input
+                type="text"
+                placeholder="First name"
+                className={inputBase}
+                value={formData.firstName}
+                onChange={(e) => setFormData({ ...formData, firstName: e.target.value })}
+              />
+              {errors.firstName && <p className="text-red-400 text-xs mt-1">{errors.firstName}</p>}
             </div>
             <div>
-                <input
-                type="email"
-                placeholder="Work email"
+              <input
+                type="text"
+                placeholder="Last name"
                 className={inputBase}
-                value={formData.email}
-                onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                />
-                {errors.email && <p className="text-red-400 text-xs mt-1">{errors.email}</p>}
-            </div>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div className="grid grid-cols-4 gap-4">
-                    <div className="col-span-2">
-                        <input
-                            type="text"
-                            placeholder="Company name"
-                            className={inputBase}
-                            value={formData.company}
-                            onChange={(e) => setFormData({ ...formData, company: e.target.value })}
-                         />
-                        {errors.company && <p className="text-red-400 text-xs mt-1">{errors.company}</p>}
-                </div>
-                <div className="col-span-2">
-                    <PhoneInput
-                       country="eg"
-                        value={phone}
-                        onChange={(value, countryData) => {
-                          setPhone(value);
-                          setDisplayPhone(`+${countryData.dialCode}${value.slice(countryData.dialCode.length)}`);
-                            }}
-                        countryCodeEditable={false}
-                        enableLongNumbers={false} 
-                        inputProps={{
-                        maxLength: 18
-                      }}
-                      masks={{
-                        eg: '... ... ....' // +20 XXX XXX XXX XXXX
-                      }}
-                      containerClass="!w-full"
-                      inputClass="!w-full !bg-[#0B1E36] !text-white !placeholder-white !border !border-[#FFFFFF3D] focus:!outline-none focus:!ring-2 focus:!ring-blue-500 !rounded-lg !py-3 !pl-11 !pr-4 !text-base !h-auto"
-                      buttonClass="!bg-[#0B1E36] !border !border-[#FFFFFF3D] !rounded-l-lg !border-r-0 hover:!bg-[#0B1E36]"
-                      dropdownClass="!bg-[#0B1E36] !text-white !border !border-[#FFFFFF3D] [&_.country:hover]:!bg-[#1a3a5c] [&_.country.highlight]:!bg-[#1a3a5c]"
-                      searchClass="!bg-[#0B1E36] !text-white !border !border-[#FFFFFF3D]"
-                  />
-                  {errors.phone && <p className="text-red-400 text-xs mt-1">{errors.phone}</p>}
-                </div>
-              </div>
-              <div className="relative flex-1">
-                  <AnimatedDropdown
-                    placeholder="Job Title"
-                    options={jobTitleOptions}
-                    value={formData.jobTitle}
-                    onChange={(val) => setFormData({ ...formData, jobTitle: val })}
-                    error={errors.jobTitle}
-                  />
+                value={formData.lastName}
+                onChange={(e) => setFormData({ ...formData, lastName: e.target.value })}
+              />
+              {errors.lastName && <p className="text-red-400 text-xs mt-1">{errors.lastName}</p>}
             </div>
           </div>
+          <div>
+            <input
+              type="email"
+              placeholder="Work email"
+              className={inputBase}
+              value={formData.email}
+              onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+            />
+            {errors.email && <p className="text-red-400 text-xs mt-1">{errors.email}</p>}
+          </div>
+        </div>
+
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div className="relative">
-                <input
-                    type="text"
-                    placeholder="Company Name"
-                    className={inputBase}
-                    value={formData.companyName}
-                    onChange={(e) => setFormData({ ...formData, companyName: e.target.value })}
-                />
-                {errors.companyName && <p className="text-red-400 text-xs mt-1">{errors.companyName}</p>}
+          <div className="grid grid-cols-4 gap-4">
+            <div className="col-span-2">
+              <input
+                type="text"
+                placeholder="Company name"
+                className={inputBase}
+                value={formData.company}
+                onChange={(e) => setFormData({ ...formData, company: e.target.value })}
+              />
+              {errors.company && <p className="text-red-400 text-xs mt-1">{errors.company}</p>}
             </div>
-            <div className="relative">
-                <AnimatedDropdown
-                    placeholder="Number of employees"
-                    options={employeeOptions}
-                    value={formData.employees}
-                    onChange={(val) => setFormData({ ...formData, employees: val })}
-                    error={errors.employees}
-                />
+            <div className="col-span-2">
+              <PhoneInput
+                country="eg"
+                value={phone}
+                onChange={(value, countryData) => {
+                  setPhone(value);
+                  setDisplayPhone(`+${countryData.dialCode}${value.slice(countryData.dialCode.length)}`);
+                }}
+                countryCodeEditable={false}
+                enableLongNumbers={false}
+                inputProps={{
+                  maxLength: 18
+                }}
+                masks={{
+                  eg: '... ... ....' // +20 XXX XXX XXX XXXX
+                }}
+                containerClass="!w-full"
+                inputClass="!w-full !bg-[#0B1E36] !text-white !placeholder-white !border !border-[#FFFFFF3D] focus:!outline-none focus:!ring-2 focus:!ring-blue-500 !rounded-lg !py-3 !pl-11 !pr-4 !text-base !h-auto"
+                buttonClass="!bg-[#0B1E36] !border !border-[#FFFFFF3D] !rounded-l-lg !border-r-0 hover:!bg-[#0B1E36]"
+                dropdownClass="!bg-[#0B1E36] !text-white !border !border-[#FFFFFF3D] [&_.country:hover]:!bg-[#1a3a5c] [&_.country.highlight]:!bg-[#1a3a5c]"
+                searchClass="!bg-[#0B1E36] !text-white !border !border-[#FFFFFF3D]"
+              />
+              {errors.phone && <p className="text-red-400 text-xs mt-1">{errors.phone}</p>}
             </div>
+          </div>
+          <div className="relative flex-1">
+            <AnimatedDropdown
+              placeholder="Job Title"
+              options={jobTitleOptions}
+              value={formData.jobTitle}
+              onChange={(val) => setFormData({ ...formData, jobTitle: val })}
+              error={errors.jobTitle}
+            />
+          </div>
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="relative">
+            <input
+              type="text"
+              placeholder="Company Name"
+              className={inputBase}
+              value={formData.companyName}
+              onChange={(e) => setFormData({ ...formData, companyName: e.target.value })}
+            />
+            {errors.companyName && <p className="text-red-400 text-xs mt-1">{errors.companyName}</p>}
+          </div>
+          <div className="relative">
+            <AnimatedDropdown
+              placeholder="Number of employees"
+              options={employeeOptions}
+              value={formData.employees}
+              onChange={(val) => setFormData({ ...formData, employees: val })}
+              error={errors.employees}
+            />
+          </div>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 items-start">
-  <div className="relative flex-1">
-    <AnimatedDropdown
-      placeholder="Where do you store your geospatial data?"
-      options={storageOptions}
-      value={formData.storage}
-      onChange={(val) => setFormData({ ...formData, storage: val })}
-      disabled={formData.geospatial === "No"}
-    />
-  </div>
+          <div className="relative flex-1">
+            <AnimatedDropdown
+              placeholder="Where do you store your geospatial data?"
+              options={storageOptions}
+              value={formData.storage}
+              onChange={(val) => setFormData({ ...formData, storage: val })}
+              disabled={formData.geospatial === "No"}
+            />
+          </div>
 
-        <div>
+          <div>
             <p className="text-white text-sm mb-2">Do you use geospatial technology already?</p>
             <div className="flex gap-6">
-            <label className="flex items-center gap-2 text-white cursor-pointer">
+              <label className="flex items-center gap-2 text-white cursor-pointer">
                 <input
-                type="radio"
-                value="Yes"
-                checked={formData.geospatial === "Yes"}
-                onChange={(e) => setFormData({ ...formData, geospatial: e.target.value })}
+                  type="radio"
+                  value="Yes"
+                  checked={formData.geospatial === "Yes"}
+                  onChange={(e) => setFormData({ ...formData, geospatial: e.target.value })}
                 /> Yes
-            </label>
-            <label className="flex items-center gap-2 text-white cursor-pointer">
+              </label>
+              <label className="flex items-center gap-2 text-white cursor-pointer">
                 <input
-                type="radio"
-                value="No"
-                checked={formData.geospatial === "No"}
-                onChange={(e) => setFormData({ ...formData, geospatial: e.target.value })}
+                  type="radio"
+                  value="No"
+                  checked={formData.geospatial === "No"}
+                  onChange={(e) => setFormData({ ...formData, geospatial: e.target.value })}
                 /> No
-            </label>
+              </label>
             </div>
+          </div>
         </div>
-        </div>  
 
-        
+
         <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mt-2">
           <div className="flex flex-col gap-1">
             <label className="flex items-start gap-2 text-white text-sm cursor-pointer">
               <input type="checkbox" className="accent-white mt-1 w-4 h-4 flex-shrink-0" />
-              I consent to receiving email marketing communications from CARTO
+              I consent to receiving email marketing communications from AXON
             </label>
             <p className="text-gray-400 text-sm ml-6">
               By submitting my personal information I accept the Privacy Notice

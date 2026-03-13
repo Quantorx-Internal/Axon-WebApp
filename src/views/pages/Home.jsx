@@ -8,39 +8,59 @@ import Industry from "./HomeViews/Marwan/Industry";
 import SpatialData from "./HomeViews/Marwan/SpatialData";
 import Plans from "./HomeViews/Marwan/Plans";
 import RequestDemo from "./HomeViews/Marwan/RequestDemo";
-import Footer from "./HomeViews/Marwan/Footer"
+import Footer from "./HomeViews/Marwan/Footer";
 import { ScrollReveal } from "../components/ScrollReveal";
 
 export default function Home(props) {
     return (
         <div className="flex flex-col bg-white w-full">
-            <Hero />
+            <section id="hero">
+                <Hero />
+            </section>
             <ScrollReveal>
-                <PlatformUsers />
+                <section id="platform">
+                    <PlatformUsers />
+                </section>
             </ScrollReveal>
             <ScrollReveal>
-                <TrustedWorldwide />
+                <section id="customers">
+                    <TrustedWorldwide />
+                </section>
             </ScrollReveal>
             <ScrollReveal>
-                <PlatformShowcase />
+                <section id="showcase">
+                    <PlatformShowcase />
+                </section>
             </ScrollReveal>
             <ScrollReveal>
-                <Enterprise />
+                <section id="enterprise">
+                    <Enterprise />
+                </section>
             </ScrollReveal>
             <ScrollReveal>
-                <CloudEcosystem />
+                <section id="solution">
+                    <CloudEcosystem />
+                </section>
             </ScrollReveal>
             <ScrollReveal>
-                <Industry />
+                <section id="industry">
+                    <Industry />
+                </section>
             </ScrollReveal>
             <ScrollReveal>
-                <SpatialData />
+                <section id="contact">
+                    <SpatialData />
+                </section>
             </ScrollReveal>
             <ScrollReveal>
-                <Plans />
+                <section id="plans">
+                    <Plans />
+                </section>
             </ScrollReveal>
             <ScrollReveal>
-                <RequestDemo />
+                <section id="request-demo">
+                    <RequestDemo />
+                </section>
             </ScrollReveal>
             <Footer />
         </div>

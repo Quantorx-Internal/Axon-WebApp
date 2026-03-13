@@ -2,6 +2,7 @@ import React from "react";
 import Button from "../../components/Button";
 import Header from "./Header";
 import { ScrollReveal } from "../../components/ScrollReveal";
+import { scrollTo } from "@/lib/scrollTo";
 
 export default function Hero() {
     const videos = [
@@ -55,7 +56,7 @@ export default function Hero() {
                             text="Request Demo"
                             variant="primary"
                             className="py-4 md:py-5 px-10 md:px-16 text-lg md:text-2xl"
-                            onClick={() => alert("Request Demo clicked")}
+                            onClick={() => scrollTo("request-demo", 80)}
                         />
                     </div>
                 </div>

@@ -1,24 +1,24 @@
-import React from "react";
 import Button from "./Button";
+import { scrollTo } from "@/lib/scrollTo";
 
 const plans = [
-  { 
-    title: "Enterprise", 
+  {
+    title: "Enterprise",
     badge: false,
-    colour: false, 
-    description: "For a business unit-level implementation of advanced spatial analytics in the cloud." 
+    colour: false,
+    description: "For a business unit-level implementation of advanced spatial analytics in the cloud."
   },
-  { 
-    title: "Strategic",  
+  {
+    title: "Strategic",
     badge: true,
-    colour: true,  
-    description: "For multi-departmental teams running analytics at scale." 
+    colour: true,
+    description: "For multi-departmental teams running analytics at scale."
   },
-  { 
-    title: "Custom",     
+  {
+    title: "Custom",
     badge: false,
-    colour: true,  
-    description: "For large enterprises and/or complex analytics scenarios." 
+    colour: true,
+    description: "For large enterprises and/or complex analytics scenarios."
   },
 ];
 
@@ -39,19 +39,19 @@ export default function PlanHeader() {
             </div>
           )}
 
-            <h1 className="font-Roboto font-[600] text-3xl leading-[32px] items-center text-[#162945] ">
+          <h1 className="font-Roboto font-[600] text-3xl leading-[32px] items-center text-[#162945] ">
             {plan.title}
           </h1>
           <p className="font-Roboto font-[400] text-lg leading-[30px] items-center text-[#162945]">
             {plan.description}
           </p>
           <span className="mt-auto">
-          <Button
-            text="Get A Quote"
-            variant={plan.colour ? "primary" : "transparent"}
-            className="w-full py-3"
-            onClick={() => {}}
-          />
+            <Button
+              text="Get A Quote"
+              variant={plan.colour ? "primary" : "transparent"}
+              className="w-full py-3"
+              onClick={() => scrollTo("request-demo", 80)}
+            />
           </span>
         </div>
       ))}
