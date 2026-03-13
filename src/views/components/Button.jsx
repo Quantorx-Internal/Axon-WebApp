@@ -5,9 +5,9 @@ function Button({ text, variant = "primary", className = "", onClick }) {
 
   const variants = {
     primary: "bg-[#026FE3] text-white shadow-lg shadow-blue-500/30 hover:bg-blue-600 hover:shadow-blue-500/50 hover:scale-105",
-    white: "bg-white text-[#026FE3] shadow-lg hover:shadow-xl hover:scale-105",
+    white: "bg-white text-[#026FE3] shadow-lg hover:shadow-xl hover:scale-105 ",
     whiteFlat: "bg-white text-[#026FE3] hover:bg-gray-100",
-    transparent: "bg-transparent border-solid border-[1.5px] border-sky-500 text-[#036FE2] hover:bg-gray-100 hover:scale-105"
+    transparent: "bg-transparent border-solid border-[1.5px] border-sky-500 text-[#036FE2] shadow-lg hover:bg-gray-100 hover:shadow-blue-600/50 hover:scale-105 "
   };
 
   const combinedClasses = `${baseClasses} ${variants[variant] || variants.primary} ${className}`;

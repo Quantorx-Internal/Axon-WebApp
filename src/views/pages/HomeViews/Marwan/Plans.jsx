@@ -77,7 +77,7 @@ export default function Plans() {
       </div>
 
       {/*  Mobile View  */}
-      <div className="md:hidden overflow-x-auto pt-6 pb-4">
+      <div className="lg:hidden overflow-x-auto pt-6 pb-4">
         <div
           className="inline-grid px-4 gap-x-4"
           style={{ gridTemplateColumns: 'repeat(3, min(75vw, 300px))' }}
@@ -112,10 +112,6 @@ export default function Plans() {
             </div>
           ))}
 
-          {/* Feature rows — outer loop = row (feature index), inner loop = column (plan)
-              flatMap produces a flat list so CSS grid places items left→right, top→bottom,
-              meaning all three cells for the same feature end up in the same grid row and
-              share the same height automatically. */}
           {plansData[0].features.flatMap((_, featIdx) =>
             plansData.map((plan) => {
               const feat = plan.features[featIdx];
@@ -147,7 +143,7 @@ export default function Plans() {
       </div>
 
       {/* Desktop view */}
-      <div className="hidden md:block overflow-x-auto px-4 md:px-0 max-w-[1400px] mx-auto">
+      <div className="hidden lg:block overflow-x-auto px-4 lg:px-0 max-w-[1400px] mx-auto">
         <div className="min-w-[900px]" style={{ display: 'grid', gridTemplateColumns: 'minmax(auto, 400px) repeat(3, 1fr)' }}>
           <div />
           <div style={{ gridColumn: 'span 3' }}>
@@ -165,7 +161,7 @@ export default function Plans() {
           <FeatureCell text="High-volume Usage Quota Consumption" />
 
           <RowLabel text="Deployment options" />
-          <FeatureCell image={true} text="Cloud" />
+          <FeatureCell image2={true} text7="Cloud"  />
           <FeatureCell image={true} text="Cloud" text2="Self-hosted Optional" />
           <FeatureCell image={true} text="Cloud" text2="Self-hosted Optional" />
 
@@ -187,7 +183,7 @@ export default function Plans() {
           <RowLabel text="Support Package" position="last" />
           <FeatureCell text="Standard or Premium" />
           <FeatureCell text="Premium or Elite" />
-          <FeatureCell text="Elite" />
+          <FeatureCell text="Elite" position="last" />
         </div>
       </div>
     </section>
