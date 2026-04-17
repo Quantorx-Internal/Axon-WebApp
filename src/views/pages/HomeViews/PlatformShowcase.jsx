@@ -84,10 +84,10 @@ export default function PlatformShowcase() {
                     <span className="text-[#47A0FF] font-semibold tracking-wide mb-4 text-sm md:text-base uppercase">
                         Platform Showcase
                     </span>
-                    <h2 className="text-[#031021] text-4xl md:text-5xl font-bold mb-4">
+                    <h2 className="text-[#031021] text-2xl lg:text-3xl font-semibold tracking-tight mb-4">
                         See AXON in Action
                     </h2>
-                    <p className="text-[#031021] text-lg md:text-xl max-w-2xl mx-auto">
+                    <p className="text-[#031021] text-base leading-relaxed max-w-2xl mx-auto">
                         Discover how our platform transforms complex spatial data into actionable insights
                     </p>
                     <img
@@ -167,7 +167,7 @@ export default function PlatformShowcase() {
                                             {isFocused ? (
                                                 /* Active: large left-aligned text */
                                                 <>
-                                                    <h3 className="text-[#031021] text-2xl md:text-3xl font-bold">
+                                                    <h3 className="text-[#031021] text-xl lg:text-2xl font-medium">
                                                         {item.title}
                                                     </h3>
                                                     <p className="text-[#030E1F]/80 text-base leading-relaxed max-w-md mx-auto">
@@ -177,10 +177,10 @@ export default function PlatformShowcase() {
                                             ) : (
                                                 /* Inactive: smaller, muted text */
                                                 <>
-                                                    <h3 className="text-[#031021]/60 text-lg md:text-xl font-bold group-hover:text-[#031021] transition-colors">
+                                                    <h3 className="text-[#031021]/60 text-lg font-medium group-hover:text-[#031021] transition-colors">
                                                         {item.title}
                                                     </h3>
-                                                    <p className="text-[#030E1F]/50 text-xs md:text-sm leading-relaxed max-w-xs mx-auto group-hover:text-[#030E1F]/80 transition-colors">
+                                                    <p className="text-[#030E1F]/50 text-sm leading-relaxed max-w-xs mx-auto group-hover:text-[#030E1F]/80 transition-colors">
                                                         {item.desc}
                                                     </p>
                                                 </>

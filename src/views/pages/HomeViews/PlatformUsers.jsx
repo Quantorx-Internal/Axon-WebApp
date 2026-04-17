@@ -58,10 +58,10 @@ export default function PlatformUsers() {
 
             {/* Header Area */}
             <div className="text-center max-w-4xl mb-12 md:mb-20">
-                <h2 className="text-[#031125] text-3xl md:text-4xl lg:text-5xl font-bold mb-6 leading-tight">
+                <h2 className="text-[#031125] text-2xl lg:text-3xl font-semibold tracking-tight mb-6">
                     One Location Intelligence platform for all users
                 </h2>
-                <p className="text-[#4A4A4A] text-lg md:text-xl lg:text-2xl leading-relaxed">
+                <p className="text-[#4A4A4A] text-base leading-relaxed">
                     Redefine how GIS serves your organization with an end-to-end platform built for the enterprise. From data analysts to developers, CARTO’s tools make spatial analysis accessible to everyone.
                 </p>
             </div>
@@ -92,7 +92,7 @@ export default function PlatformUsers() {
                                 <tab.Icon
                                     className={`w-6 h-6 md:w-8 md:h-8 transition-all duration-300 shrink-0 ${activeTab === idx ? 'scale-110 text-[#026FE3]' : 'text-[#717171]'}`}
                                 />
-                                <span className={`text-xl md:text-2xl lg:text-3xl font-bold transition-colors duration-300 tracking-wide ${activeTab === idx ? 'text-[#026FE3]' : 'text-[#717171]'}`}>
+                                <span className={`text-lg font-medium transition-colors duration-300 tracking-wide ${activeTab === idx ? 'text-[#026FE3]' : 'text-[#717171]'}`}>
                                     {tab.name.toUpperCase()}
                                 </span>
                             </button>
@@ -114,27 +114,27 @@ export default function PlatformUsers() {
                         <div className="relative z-10 flex flex-col items-start bg-white/80 md:bg-transparent backdrop-blur-md md:backdrop-blur-none p-6 md:p-0 rounded-2xl md:rounded-none">
                             <div className="flex items-center gap-6 mb-4 md:mb-6">
                                 <ActiveIcon className="w-12 h-12 md:w-16 md:h-16 lg:w-[78px] lg:h-[76px] text-[#031125] shrink-0" />
-                                <h3 className="text-[#031125] text-2xl md:text-3xl lg:text-4xl font-bold max-w-sm leading-tight">
+                                <h3 className="text-[#031125] text-xl lg:text-2xl font-medium max-w-sm">
                                     Unmatched data visualization capabilities
                                 </h3>
                             </div>
 
-                            <p className="text-[#031125]/90 text-lg md:text-xl lg:text-2xl mb-8 leading-relaxed max-w-xl">
+                            <p className="text-[#031125]/90 text-base leading-relaxed max-w-xl mb-8">
                                 Transform complex geospatial data into actionable insights with our intuitive analytics platform.
                             </p>
 
                             <ul className="flex flex-col gap-4">
                                 <li className="flex items-start gap-4">
                                     <span className="w-5 h-5 mt-1 rounded-full bg-[#031125] shrink-0 block" />
-                                    <span className="text-[#031125] text-base md:text-lg lg:text-xl font-medium">Automated analysis with drag-and-drop interface</span>
+                                    <span className="text-[#031125] text-base leading-relaxed">Automated analysis with drag-and-drop interface</span>
                                 </li>
                                 <li className="flex items-start gap-4">
                                     <span className="w-5 h-5 mt-1 rounded-full bg-[#031125] shrink-0 block" />
-                                    <span className="text-[#031125] text-base md:text-lg lg:text-xl font-medium">100+ ready-to-go analysis components with native ML & AI integrations</span>
+                                    <span className="text-[#031125] text-base leading-relaxed">100+ ready-to-go analysis components with native ML & AI integrations</span>
                                 </li>
                                 <li className="flex items-start gap-4">
                                     <span className="w-5 h-5 mt-1 rounded-full bg-[#031125] shrink-0 block" />
-                                    <span className="text-[#031125] text-base md:text-lg lg:text-xl font-medium">Automate deployment with APIs, AI Agents & MCP tools</span>
+                                    <span className="text-[#031125] text-base leading-relaxed">Automate deployment with APIs, AI Agents & MCP tools</span>
                                 </li>
                             </ul>
                         </div>

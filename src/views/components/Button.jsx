@@ -1,7 +1,7 @@
 import React from 'react';
 
 function Button({ text, variant = "primary", className = "", onClick }) {
-  const baseClasses = "flex items-center justify-center font-roboto font-[600] rounded-full transition-all duration-300 whitespace-nowrap cursor-pointer ";
+  const baseClasses = "flex items-center justify-center font-roboto text-base font-bold rounded-full transition-all duration-300 whitespace-nowrap cursor-pointer ";
 
   const variants = {
     primary: "bg-[#026FE3] text-white shadow-lg shadow-blue-500/30 hover:bg-blue-600 hover:shadow-blue-500/50 hover:scale-105",

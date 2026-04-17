@@ -49,7 +49,7 @@ export default function Header() {
                             <button
                                 key={label}
                                 onClick={() => handleNav(id)}
-                                className="text-base xl:text-lg font-semibold text-white hover:text-[#47A0FF] transition-colors bg-transparent border-none cursor-pointer"
+                                className="text-sm font-medium text-white hover:text-[#47A0FF] transition-colors bg-transparent border-none cursor-pointer"
                             >
                                 {label}
                             </button>
@@ -61,7 +61,7 @@ export default function Header() {
                         <Button
                             text="Request Demo"
                             variant="white"
-                            className="hidden md:flex py-3 px-6 xl:px-8 text-sm xl:text-base"
+                            className="hidden md:flex py-3 px-6 xl:px-8 text-sm font-medium"
                             onClick={handleRequestDemo}
                         />
 
@@ -84,7 +84,7 @@ export default function Header() {
                 {NAV_LINKS.map(({ label, id }) => (
                     <button
                         key={label}
-                        className="text-white text-left text-lg font-medium hover:text-[#47A0FF] transition-colors border-none bg-transparent"
+                        className="text-white text-left text-sm font-medium hover:text-[#47A0FF] transition-colors border-none bg-transparent"
                         onClick={() => handleNav(id)}
                     >
                         {label}
@@ -93,7 +93,7 @@ export default function Header() {
                 <Button
                     text="Request Demo"
                     variant="whiteFlat"
-                    className="md:hidden w-full py-3 px-6 mt-4 text-base"
+                    className="md:hidden w-full py-3 px-6 mt-4 text-sm font-medium"
                     onClick={handleRequestDemo}
                 />
             </div>

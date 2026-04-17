@@ -8,10 +8,10 @@ export default function TrustedWorldwide() {
         >
             <div className="absolute inset-0 bg-[#031125]/80 pointer-events-none"></div>
             <div className="relative z-10 flex flex-col items-center">
-                <h2 className="text-white text-4xl md:text-5xl lg:text-[70px] font-bold mb-4 md:mb-6 leading-tight">
+                <h2 className="text-white text-3xl lg:text-4xl font-bold tracking-tight mb-4 md:mb-6">
                     Trusted Worldwide
                 </h2>
-                <p className="text-white/90 text-lg md:text-xl lg:text-2xl max-w-4xl font-light">
+                <p className="text-white/90 text-base leading-relaxed max-w-4xl">
                     Leading organizations across every industry rely on AXON
                 </p>
             </div>

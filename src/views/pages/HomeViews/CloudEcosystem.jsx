@@ -16,10 +16,10 @@ export default function CloudEcosystem() {
 
                 {/* Header Text */}
                 <div className="flex flex-col items-center text-center gap-4 md:gap-6 mb-12 md:mb-16">
-                    <h2 className="text-white text-3xl md:text-4xl lg:text-5xl font-bold max-w-4xl leading-tight">
+                    <h2 className="text-white text-3xl lg:text-4xl font-bold tracking-tight max-w-4xl">
                         Bring geospatial into your cloud ecosystem
                     </h2>
-                    <p className="text-white/80 text-lg md:text-xl lg:text-2xl max-w-3xl">
+                    <p className="text-white/80 text-base leading-relaxed max-w-3xl">
                         Deploy in the cloud or run it on-premises / self-hosted in your own environment
                     </p>
                 </div>

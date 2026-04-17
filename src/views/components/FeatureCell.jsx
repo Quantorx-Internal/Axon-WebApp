@@ -20,29 +20,29 @@ export default function FeatureCell({ text, image,image2 ,text2 ,text3,text4,tex
           <img src="/DataBricksClean.png" alt="Databricks" className="w-10 h-10 shrink-0 object-contain border border-[#D9D9D9]" />
           <img src="/SnowFlakeClean.png" alt="Snowflake" className="w-10 h-10 shrink-0 object-contain border border-[#D9D9D9]" />
           </div>
-        <div className="font-Roboto font-[400] text-lg leading-[30px] text-[#162945]  text-left">
+        <div className="font-Roboto text-base leading-relaxed text-[#162945] text-left">
           {text7}
         </div>
         </div>
       )}
       {text && (
          <div className="flex flex-col">
-        <span className="font-Roboto font-[400] text-lg leading-[30px] text-[#162945] text-left">
+        <span className="font-Roboto text-base leading-relaxed text-[#162945] text-left">
           {text}
         </span>
-        <span className="font-Roboto font-[400] text-lg leading-[30px] text-[#162945] text-left">
+        <span className="font-Roboto text-base leading-relaxed text-[#162945] text-left">
           {text2}
         </span>
-        <span className="font-Roboto font-[400] text-lg leading-[30px] text-[#162945] text-left">
+        <span className="font-Roboto text-base leading-relaxed text-[#162945] text-left">
           {text3}
         </span>
-        <span className="font-Roboto font-[400] text-lg leading-[30px] text-[#162945] text-left">
+        <span className="font-Roboto text-base leading-relaxed text-[#162945] text-left">
           {text4}
         </span>
-        <span className="font-Roboto font-[400] text-lg leading-[30px] text-[#162945] text-left">
+        <span className="font-Roboto text-base leading-relaxed text-[#162945] text-left">
           {text5}
         </span>
-        <span className="font-Roboto font-[400] text-lg leading-[30px] text-[#162945] text-left">
+        <span className="font-Roboto text-base leading-relaxed text-[#162945] text-left">
           {text6}
         </span>
         </div>

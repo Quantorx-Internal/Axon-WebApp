@@ -7,10 +7,10 @@ function IndustryButton() {
             className="flex flex-row sm:flex-row items-center justify-between bg-[#036FE2] text-white rounded-[36.83px] w-full px-2 sm:px-8 py-2 sm:py-[9px] gap- sm:gap-0"
             onClick={() => scrollTo("plans", 80)}
         >
-            <p className="font-Roboto text-base sm:text-2xl md:text-3xl leading-tight sm:leading-[48.96px]">
+            <p className="font-Roboto text-base font-semibold">
                 Explore Industry Insights
             </p>
-            <span className="flex items-center gap-2 sm:gap-4 font-Roboto font-bold text-base sm:text-lg md:text-2xl leading-tight sm:leading-[33.48px] tracking-[1.17px] uppercase">
+            <span className="flex items-center gap-2 sm:gap-4 font-Roboto font-semibold text-base uppercase">
                 <p>LEARN MORE</p>
                 <FaArrowRight />
             </span>

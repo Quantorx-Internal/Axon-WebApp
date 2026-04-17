@@ -44,18 +44,18 @@ export default function Hero() {
                             className="w-48 md:w-64 lg:w-80 h-auto object-contain mb-8 animate-fade-in-up"
                         />
 
-                        <h1 className="text-white text-3xl md:text-5xl lg:text-6xl font-extrabold leading-tight tracking-tight mb-6 uppercase">
+                        <h1 className="text-white text-4xl lg:text-5xl font-semibold tracking-tight mb-6 uppercase">
                             AGENTIC AI GIS INTELLIGENCE PLATFORM
                         </h1>
 
-                        <p className="text-white/90 text-sm md:text-lg lg:text-xl max-w-3xl leading-relaxed mb-10 md:mb-14 font-light">
+                        <p className="text-white/90 text-base leading-relaxed max-w-3xl mb-10 md:mb-14">
                             Transform how your teams work with spatial data through intelligent automation. Built for enterprise scale, designed for effortless collaboration.
                         </p>
 
                         <Button
                             text="Request Demo"
                             variant="primary"
-                            className="py-4 md:py-5 px-10 md:px-16 text-lg md:text-2xl"
+                            className="py-4 md:py-5 px-10 md:px-16 text-lg md:text-xl font-bold"
                             onClick={() => scrollTo("request-demo", 80)}
                         />
                     </div>
@@ -83,14 +83,14 @@ export default function Hero() {
 
                             {/* Video Info Bar */}
                             <div className="relative z-10 w-full p-4 md:p-6 lg:p-8 bg-gradient-to-t from-black/80 via-black/40 to-transparent flex flex-col xs:flex-row items-start xs:items-center justify-between gap-2 xs:gap-4 mt-auto">
-                                <span className="text-white text-lg md:text-2xl font-bold truncate pr-4">
+                                <span className="text-white text-lg font-medium truncate pr-4">
                                     Platform Overview Demo
                                 </span>
                                 <div className="flex items-center gap-2 md:gap-4 shrink-0 bg-black/40 px-3 py-1 md:px-4 md:py-2 rounded-full backdrop-blur-md">
-                                    <span className="text-white/80 text-xs md:text-sm uppercase tracking-wider font-semibold">
+                                    <span className="text-white/80 text-xs uppercase font-semibold">
                                         Duration
                                     </span>
-                                    <span className="text-white text-sm md:text-base font-bold font-mono">
+                                    <span className="text-white text-sm leading-relaxed font-mono">
                                         20:00
                                     </span>
                                 </div>
@@ -106,10 +106,10 @@ export default function Hero() {
 
                     {/* Section Header */}
                     <div className="flex flex-col items-center text-center gap-4 mb-12 md:mb-16">
-                        <h2 className="text-white text-3xl md:text-4xl lg:text-5xl font-bold leading-tight">
+                        <h2 className="text-white text-2xl lg:text-3xl font-semibold tracking-tight">
                             Explore common test cases
                         </h2>
-                        <p className="text-white/80 text-lg md:text-xl lg:text-2xl font-light">
+                        <p className="text-white/80 text-base leading-relaxed">
                             See how our platform handles the most frequent workflows
                         </p>
                     </div>
@@ -129,14 +129,14 @@ export default function Hero() {
 
                                         {/* Top Bar inside Video */}
                                         <div className="absolute top-0 left-0 right-0 p-3 md:p-4 flex justify-between items-center bg-gradient-to-b from-black/80 to-transparent z-10">
-                                            <span className="text-white text-xs md:text-sm font-bold truncate pr-2">
+                                            <span className="text-white text-xs font-medium truncate pr-2">
                                                 {vid.title}
                                             </span>
                                             <div className="flex items-center gap-2 shrink-0 bg-black/40 px-2 py-1 rounded-full backdrop-blur-sm">
-                                                <span className="text-white/80 text-[10px] md:text-xs uppercase tracking-wider">
+                                                <span className="text-white/80 text-xs uppercase">
                                                     Duration
                                                 </span>
-                                                <span className="text-white text-[10px] md:text-xs font-mono font-bold">
+                                                <span className="text-white text-xs font-mono font-medium">
                                                     {vid.duration}
                                                 </span>
                                             </div>
@@ -150,7 +150,7 @@ export default function Hero() {
                                 </div>
 
                                 {/* Title below Video */}
-                                <h3 className="text-white text-lg md:text-xl lg:text-2xl font-medium mt-4 md:mt-6 text-center group-hover:text-[#47A0FF] transition-colors">
+                                <h3 className="text-white text-lg font-medium mt-4 md:mt-6 text-center group-hover:text-[#47A0FF] transition-colors">
                                     {vid.title}
                                 </h3>
                             </div>
