@@ -1,29 +1,22 @@
-import { FaLinkedinIn, FaXTwitter, FaYoutube, FaGithub } from "react-icons/fa6";
 import { FiArrowUp } from "react-icons/fi";
 import { AxonLogo } from "../../components/AxonLogo";
 import { Magnetic } from "../../components/Magnetic";
 import { Reveal, WordReveal } from "../../components/Reveal";
 import { scrollTo } from "@/lib/scrollTo";
+import { CONTACT, activeSocials } from "@/lib/site";
 
 const platformLinks = [
   { label: "Overview", id: "platform" },
   { label: "AXON Agent", id: "showcase" },
+  { label: "How it works", id: "how" },
   { label: "Pricing", id: "plans" },
-  { label: "Security", id: "enterprise" },
 ];
 
 const solutionLinks = [
   { label: "By industry", id: "industry" },
-  { label: "Cloud ecosystem", id: "solution" },
-  { label: "Customers", id: "customers" },
-  { label: "Request a demo", id: "request-demo" },
-];
-
-const socials = [
-  { Icon: FaLinkedinIn, href: "https://linkedin.com", label: "LinkedIn" },
-  { Icon: FaXTwitter, href: "https://twitter.com", label: "X" },
-  { Icon: FaGithub, href: "https://github.com", label: "GitHub" },
-  { Icon: FaYoutube, href: "https://youtube.com", label: "YouTube" },
+  { label: "Integrations", id: "solution" },
+  { label: "Security", id: "enterprise" },
+  { label: "FAQ", id: "faq" },
 ];
 
 function LinkColumn({ title, links }) {
@@ -48,6 +41,8 @@ function LinkColumn({ title, links }) {
 }
 
 export default function Footer() {
+  const socials = activeSocials();
+
   return (
     <footer className="relative bg-ink-900 text-white overflow-hidden grain">
       {/* static aurora glow */}
@@ -73,24 +68,26 @@ export default function Footer() {
                 onClick={() => scrollTo("request-demo", 90)}
                 className="inline-flex items-center gap-2.5 rounded-[10px] bg-white text-ink font-mono text-xs md:text-[0.78rem] font-medium uppercase tracking-[0.08em] py-3.5 px-7 hover:bg-cloud transition-colors"
               >
-                Submit RFP
+                Request a demo
                 <span className="text-[1.15em] leading-none -mt-px">•</span>
               </button>
             </Magnetic>
-            <div className="flex items-center gap-2.5">
-              {socials.map(({ Icon, href, label }) => (
-                <a
-                  key={label}
-                  href={href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label={label}
-                  className="w-10 h-10 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center text-white/80 hover:bg-white hover:text-ink hover:border-white transition-colors"
-                >
-                  <Icon className="text-sm" />
-                </a>
-              ))}
-            </div>
+            {socials.length > 0 && (
+              <div className="flex items-center gap-2.5">
+                {socials.map(({ Icon, href, label }) => (
+                  <a
+                    key={label}
+                    href={href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={label}
+                    className="w-10 h-10 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center text-white/80 hover:bg-white hover:text-ink hover:border-white transition-colors"
+                  >
+                    <Icon className="text-sm" />
+                  </a>
+                ))}
+              </div>
+            )}
           </Reveal>
         </div>
 
@@ -104,9 +101,14 @@ export default function Footer() {
               Natural-language GIS intelligence — ask your spatial data anything,
               in English or Arabic, and get instant maps and answers.
             </p>
-            <p className="font-mono text-xs uppercase tracking-[0.12em] text-white/35">
-              Powered by QuantorX
-            </p>
+            <a
+              href={CONTACT.website}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-fit font-mono text-xs uppercase tracking-[0.12em] text-white/35 hover:text-white/70 transition-colors"
+            >
+              Powered by {CONTACT.company} ↗
+            </a>
           </div>
           <LinkColumn title="Platform" links={platformLinks} />
           <LinkColumn title="Solutions" links={solutionLinks} />
@@ -115,13 +117,13 @@ export default function Footer() {
               Contact
             </p>
             <div className="flex flex-col gap-3 text-[0.95rem]">
-              <a href="mailto:info@axon.ai" className="text-white/65 hover:text-white transition-colors">
-                info@axon.ai
+              <a href={`mailto:${CONTACT.email}`} className="text-white/65 hover:text-white transition-colors">
+                {CONTACT.email}
               </a>
-              <a href="tel:+201000000000" className="text-white/65 hover:text-white transition-colors">
-                +20 100 000 0000
+              <a href={CONTACT.phoneHref} className="text-white/65 hover:text-white transition-colors">
+                {CONTACT.phoneDisplay}
               </a>
-              <span className="text-white/65">Cairo, Egypt</span>
+              <span className="text-white/65">{CONTACT.location}</span>
             </div>
           </div>
         </div>
@@ -130,7 +132,7 @@ export default function Footer() {
 
         <div className="flex flex-col md:flex-row items-center justify-between gap-4 py-6">
           <p className="font-mono text-xs uppercase tracking-[0.1em] text-white/35 order-2 md:order-1">
-            © 2025 QuantorX. All rights reserved.
+            © 2026 {CONTACT.company}. All rights reserved.
           </p>
           <button
             onClick={() => scrollTo("hero", 0)}

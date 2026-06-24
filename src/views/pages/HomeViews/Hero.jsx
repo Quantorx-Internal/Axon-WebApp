@@ -1,4 +1,4 @@
-import { useRef, useLayoutEffect } from "react";
+import { useRef, useState, useLayoutEffect } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { FaPlay } from "react-icons/fa";
@@ -11,30 +11,6 @@ import { Reveal, WordReveal } from "../../components/Reveal";
 import { scrollTo } from "@/lib/scrollTo";
 
 gsap.registerPlugin(ScrollTrigger);
-
-const testCases = [
-  {
-    title: "Find sites near transit",
-    tag: "Real estate",
-    bgImage:
-      "https://storage.googleapis.com/tagjs-prod.appspot.com/v1/292NacUvQT/250v9pdf_expires_30_days.png",
-    duration: "2:14",
-  },
-  {
-    title: "Proximity & buffer analysis",
-    tag: "Government",
-    bgImage:
-      "https://storage.googleapis.com/tagjs-prod.appspot.com/v1/292NacUvQT/vdmri7wb_expires_30_days.png",
-    duration: "1:48",
-  },
-  {
-    title: "Coverage & network planning",
-    tag: "Telecom",
-    bgImage:
-      "https://storage.googleapis.com/tagjs-prod.appspot.com/v1/292NacUvQT/6sg7ezd6_expires_30_days.png",
-    duration: "3:02",
-  },
-];
 
 function MagButton({ children, onClick, variant = "white" }) {
   const styles =
@@ -57,6 +33,12 @@ function MagButton({ children, onClick, variant = "white" }) {
 export default function Hero() {
   const heroRef = useRef(null);
   const contentRef = useRef(null);
+  const [playing, setPlaying] = useState(false);
+
+  const playOverview = () => {
+    setPlaying(true);
+    scrollTo("watch", 90);
+  };
 
   useLayoutEffect(() => {
     const ctx = gsap.context(() => {
@@ -89,7 +71,9 @@ export default function Hero() {
 
         <div
           ref={contentRef}
-          className="relative z-10 flex-1 flex items-center"
+          id="main"
+          tabIndex={-1}
+          className="relative z-10 flex-1 flex items-center focus:outline-none"
         >
           <div className="max-w-7xl mx-auto w-full px-5 md:px-8 pt-28">
             <Reveal y={14} duration={0.7}>
@@ -130,7 +114,7 @@ export default function Hero() {
               <MagButton variant="white" onClick={() => scrollTo("request-demo", 90)}>
                 Get a demo
               </MagButton>
-              <MagButton variant="outline" onClick={() => scrollTo("showcase", 90)}>
+              <MagButton variant="outline" onClick={playOverview}>
                 Watch overview
               </MagButton>
             </Reveal>
@@ -150,60 +134,84 @@ export default function Hero() {
               Scroll to explore
             </button>
             <span className="hidden md:block font-mono text-[0.65rem] uppercase tracking-[0.2em] text-white/30">
-              © {`2025 — AXON`}
+              © {`2026 — AXON`}
             </span>
           </div>
         </div>
       </section>
 
-      {/* Explore common test cases */}
-      <section className="w-full bg-white py-20 md:py-28 px-5 md:px-8">
+      {/* Watch the overview */}
+      <section id="watch" className="w-full bg-white py-20 md:py-28 px-5 md:px-8">
         <div className="max-w-7xl mx-auto">
           <SectionHeader
             index="✦"
-            label="Common workflows"
-            title="Explore common test cases"
-            description="See how AXON answers the spatial questions your teams ask every day."
+            label="Watch"
+            title="See AXON work in two minutes"
+            description="From a plain-language question to a live map, chart, and answer — the whole flow, end to end."
             className="mb-12 md:mb-14"
           />
 
-          <Reveal
-            stagger={0.12}
-            className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8"
-          >
-            {testCases.map((vid, i) => (
-              <button
-                key={vid.title}
-                onClick={() => alert("Play Video")}
-                data-cursor-label="Play"
-                className="group text-left bg-white rounded-2xl border border-line hover:border-ink/20 hover:-translate-y-1.5 transition-all duration-500 ease-smooth overflow-hidden cursor-pointer"
-              >
-                <div className="relative aspect-video overflow-hidden">
-                  <div
-                    className="absolute inset-0 bg-cover bg-center transition-transform duration-[900ms] ease-smooth group-hover:scale-110"
-                    style={{ backgroundImage: `url(${vid.bgImage})` }}
+          <Reveal>
+            <div className="group relative w-full overflow-hidden rounded-[1.75rem] border border-line bg-ink-900">
+              <div className="relative aspect-video overflow-hidden">
+                {playing ? (
+                  <video
+                    src="/axon-demo.mp4"
+                    className="absolute inset-0 w-full h-full object-cover bg-black"
+                    controls
+                    autoPlay
+                    playsInline
                   />
-                  <div className="absolute inset-0 bg-ink/20 group-hover:bg-ink/10 transition-colors" />
-                  <span className="absolute top-4 left-4 font-mono text-[0.62rem] uppercase tracking-wider bg-white/90 text-ink rounded-md px-2.5 py-1.5">
-                    {vid.tag}
-                  </span>
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <div className="w-14 h-14 rounded-full bg-white/90 flex items-center justify-center group-hover:bg-ink group-hover:text-white text-ink transition-all duration-300">
-                      <FaPlay className="text-sm ml-0.5" />
-                    </div>
-                  </div>
-                </div>
-                <div className="flex items-center justify-between p-5">
-                  <h3 className="flex items-center gap-3 text-lg font-medium text-ink">
-                    <span className="font-mono text-xs text-ink-muted">{`0${i + 1}`}</span>
-                    {vid.title}
-                  </h3>
-                  <span className="font-mono text-xs text-ink-muted">
-                    {vid.duration}
-                  </span>
-                </div>
-              </button>
-            ))}
+                ) : (
+                  <button
+                    type="button"
+                    onClick={() => setPlaying(true)}
+                    data-cursor-label="Play"
+                    aria-label="Play the AXON product overview"
+                    className="absolute inset-0 w-full h-full cursor-pointer"
+                  >
+                    <span
+                      className="absolute inset-0 bg-cover bg-center transition-transform duration-[1200ms] ease-smooth group-hover:scale-105"
+                      style={{ backgroundImage: "url('/axon-demo-poster.jpg')" }}
+                    />
+                    <span className="absolute inset-0 bg-gradient-to-t from-ink-900/75 via-ink-900/10 to-ink-900/25" />
+
+                    {/* play button */}
+                    <span className="absolute inset-0 flex items-center justify-center">
+                      <span className="w-20 h-20 md:w-24 md:h-24 rounded-full bg-white/95 flex items-center justify-center text-ink shadow-lift transition-all duration-300 group-hover:scale-110 group-hover:bg-white">
+                        <FaPlay className="text-xl md:text-2xl ml-1" />
+                      </span>
+                    </span>
+
+                    {/* caption */}
+                    <span className="absolute left-5 bottom-5 md:left-7 md:bottom-7 flex items-center gap-3">
+                      <span className="font-mono text-[0.62rem] uppercase tracking-wider bg-white/90 text-ink rounded-md px-2.5 py-1.5">
+                        Product overview
+                      </span>
+                      <span className="font-mono text-xs text-white/85">1:54</span>
+                    </span>
+                  </button>
+                )}
+              </div>
+            </div>
+          </Reveal>
+
+          {/* what the demo covers */}
+          <Reveal delay={0.1} className="mt-7 flex flex-wrap items-center gap-3">
+            <span className="font-mono text-[0.62rem] uppercase tracking-[0.14em] text-ink-muted">
+              In this demo
+            </span>
+            {["Ask in plain language", "Live map & charts", "Grounded answers"].map(
+              (w) => (
+                <button
+                  key={w}
+                  onClick={() => scrollTo("how", 90)}
+                  className="rounded-full border border-line bg-white px-4 py-2 font-mono text-[0.62rem] uppercase tracking-wider text-ink-soft hover:border-ink/30 hover:text-ink transition-colors cursor-pointer"
+                >
+                  {w}
+                </button>
+              )
+            )}
           </Reveal>
         </div>
       </section>

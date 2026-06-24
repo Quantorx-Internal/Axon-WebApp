@@ -1,6 +1,7 @@
 import { SectionHeader } from "../../components/SectionHeader";
 import { Reveal } from "../../components/Reveal";
 import { Counter } from "../../components/Counter";
+import { SpotlightCard } from "../../components/SpotlightCard";
 
 const Icon = ({ path, className }) => (
   <svg
@@ -136,7 +137,7 @@ export default function Enterprise() {
 
           {/* Three small capability cards */}
           {smallCards.map((c) => (
-            <div
+            <SpotlightCard
               key={c.label}
               className="group rounded-3xl border border-line bg-white p-7 hover:border-ink/20 hover:-translate-y-1 transition-all duration-500 ease-smooth"
             >
@@ -154,7 +155,7 @@ export default function Enterprise() {
               <p className="text-ink-soft text-[0.95rem] leading-relaxed">
                 {c.desc}
               </p>
-            </div>
+            </SpotlightCard>
           ))}
         </Reveal>
       </div>

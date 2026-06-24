@@ -1,23 +1,18 @@
 import { useEffect } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { FaLinkedinIn, FaXTwitter, FaYoutube, FaGithub } from "react-icons/fa6";
 import { AxonLogo } from "./AxonLogo";
 import { getLenis } from "../../lib/smoothScroll";
+import { CONTACT, activeSocials } from "../../lib/site";
 
 const links = [
   { label: "Home", id: "hero" },
   { label: "Platform", id: "platform" },
+  { label: "How it works", id: "how" },
   { label: "Solutions", id: "solution" },
   { label: "Customers", id: "customers" },
   { label: "Pricing", id: "plans" },
+  { label: "FAQ", id: "faq" },
   { label: "Request a demo", id: "request-demo" },
-];
-
-const socials = [
-  { Icon: FaLinkedinIn, href: "https://linkedin.com", label: "LinkedIn" },
-  { Icon: FaXTwitter, href: "https://twitter.com", label: "X" },
-  { Icon: FaGithub, href: "https://github.com", label: "GitHub" },
-  { Icon: FaYoutube, href: "https://youtube.com", label: "YouTube" },
 ];
 
 const ease = [0.76, 0, 0.24, 1];
@@ -105,27 +100,29 @@ export function MenuOverlay({ open, onClose, onNavigate }) {
             className="relative z-10 max-w-7xl w-full mx-auto px-5 md:px-8 py-8 flex flex-col md:flex-row items-start md:items-center justify-between gap-6 border-t border-dashed border-white/12"
           >
             <div className="flex flex-col gap-1">
-              <a href="mailto:info@axon.ai" className="text-white/70 hover:text-white transition-colors">
-                info@axon.ai
+              <a href={`mailto:${CONTACT.email}`} className="text-white/70 hover:text-white transition-colors">
+                {CONTACT.email}
               </a>
               <span className="font-mono text-xs uppercase tracking-[0.12em] text-white/35">
-                Cairo, Egypt
+                {CONTACT.location}
               </span>
             </div>
-            <div className="flex items-center gap-2.5">
-              {socials.map(({ Icon, href, label }) => (
-                <a
-                  key={label}
-                  href={href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label={label}
-                  className="w-10 h-10 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center text-white/80 hover:bg-white hover:text-ink transition-colors"
-                >
-                  <Icon className="text-sm" />
-                </a>
-              ))}
-            </div>
+            {activeSocials().length > 0 && (
+              <div className="flex items-center gap-2.5">
+                {activeSocials().map(({ Icon, href, label }) => (
+                  <a
+                    key={label}
+                    href={href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={label}
+                    className="w-10 h-10 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center text-white/80 hover:bg-white hover:text-ink transition-colors"
+                  >
+                    <Icon className="text-sm" />
+                  </a>
+                ))}
+              </div>
+            )}
           </motion.div>
         </motion.div>
       )}

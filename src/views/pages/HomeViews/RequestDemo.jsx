@@ -5,6 +5,7 @@ import "react-phone-input-2/lib/style.css";
 import { useState, useRef, useEffect } from "react";
 import { Magnetic } from "../../components/Magnetic";
 import { Reveal } from "../../components/Reveal";
+import { CONTACT } from "@/lib/site";
 
 const inputBase =
   "w-full bg-white text-ink placeholder:text-ink-muted border border-line focus:outline-none focus:ring-2 focus:ring-accent/40 focus:border-accent rounded-xl py-3 px-4 text-base transition-shadow";
@@ -76,6 +77,7 @@ function AnimatedDropdown({ placeholder, options, value, onChange, disabled, err
 export default function RequestDemo() {
   const [errors, setErrors] = useState({});
   const [phone, setPhone] = useState("");
+  const [submitted, setSubmitted] = useState(false);
   const [, setDisplayPhone] = useState("");
   const [formData, setFormData] = useState({
     firstName: "",
@@ -110,6 +112,47 @@ export default function RequestDemo() {
       return;
     }
     setErrors({});
+
+    const rows = [
+      `Name: ${formData.firstName} ${formData.lastName}`,
+      `Work email: ${formData.email}`,
+      `Phone: +${phone}`,
+      `Company: ${formData.company}`,
+      `Company name: ${formData.companyName}`,
+      `Job title: ${formData.jobTitle}`,
+      `Employees: ${formData.employees}`,
+      `Already uses geospatial: ${formData.geospatial}`,
+      formData.geospatial === "Yes" && formData.storage
+        ? `Spatial data store: ${formData.storage}`
+        : null,
+    ].filter(Boolean);
+
+    const subject = `AXON demo request — ${formData.company || formData.companyName}`;
+    const body = `Hi AXON team,\n\nI'd like to request a demo.\n\n${rows.join(
+      "\n"
+    )}\n\nThanks,\n${formData.firstName}`;
+
+    window.location.href = `mailto:${CONTACT.email}?subject=${encodeURIComponent(
+      subject
+    )}&body=${encodeURIComponent(body)}`;
+
+    setSubmitted(true);
+  };
+
+  const resetForm = () => {
+    setSubmitted(false);
+    setPhone("");
+    setFormData({
+      firstName: "",
+      lastName: "",
+      email: "",
+      company: "",
+      companyName: "",
+      jobTitle: "",
+      employees: "",
+      storage: "",
+      geospatial: "No",
+    });
   };
 
   return (
@@ -147,6 +190,36 @@ export default function RequestDemo() {
 
           {/* Right — form card */}
           <Reveal delay={0.1} className="bg-white rounded-[1.75rem] border border-line shadow-card p-6 md:p-9">
+            {submitted ? (
+              <div className="flex flex-col items-center text-center py-12 md:py-20">
+                <span className="w-16 h-16 rounded-full bg-gradient-to-br from-accent to-teal flex items-center justify-center text-white mb-6">
+                  <svg className="w-7 h-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M20 6 9 17l-5-5" />
+                  </svg>
+                </span>
+                <h3 className="font-display text-2xl md:text-3xl font-medium text-ink tracking-[-0.02em]">
+                  Thanks{formData.firstName ? `, ${formData.firstName}` : ""}!
+                </h3>
+                <p className="text-ink-soft leading-relaxed mt-3 max-w-sm">
+                  Your demo request is ready in your email app — just hit send and
+                  we&rsquo;ll be in touch within one business day.
+                </p>
+                <p className="text-ink-muted text-sm mt-4">
+                  Didn&rsquo;t open?{" "}
+                  <a href={`mailto:${CONTACT.email}`} className="text-accent hover:underline">
+                    Email us at {CONTACT.email}
+                  </a>
+                </p>
+                <button
+                  type="button"
+                  onClick={resetForm}
+                  className="group mt-8 inline-flex items-center gap-2 font-mono text-xs uppercase tracking-[0.1em] text-ink hover:text-accent transition-colors bg-transparent border-none cursor-pointer"
+                >
+                  Send another request
+                  <span className="transition-transform group-hover:translate-x-1">→</span>
+                </button>
+              </div>
+            ) : (
             <form onSubmit={handleSubmit} className="flex flex-col gap-5">
               <div className="grid grid-cols-2 gap-4">
                 <div>
@@ -237,6 +310,7 @@ export default function RequestDemo() {
                 />
               </Magnetic>
             </form>
+            )}
           </Reveal>
         </div>
       </div>
