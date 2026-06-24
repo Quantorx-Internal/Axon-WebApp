@@ -2,7 +2,293 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+/* ============================================================
+   AXON — kore.ai-inspired light design system
+   ============================================================ */
+
+@layer base {
+  :root {
+    --ink: #0a1a2f;
+    --accent: #026fe3;
+    --accent-bright: #3b8dff;
+    --teal: #10b8b0;
+    --violet: #7c6cff;
+  }
+
+  * {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  html {
+    /* Lenis drives scrolling; keep native behavior off. */
+    scroll-behavior: auto;
+  }
+
+  body {
+    margin: 0;
+    background: #ffffff;
+    color: var(--ink);
+    font-family: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+    font-feature-settings: "cv02", "cv03", "cv04", "ss01";
+    text-rendering: optimizeLegibility;
+  }
+
+  ::selection {
+    background: rgba(2, 111, 227, 0.16);
+    color: var(--ink);
+  }
+
+  h1, h2, h3, h4 {
+    font-family: "Inter", system-ui, sans-serif;
+    letter-spacing: -0.025em;
+    font-weight: 500;
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #cdd9e8;
+    border-radius: 999px;
+    border: 2px solid #ffffff;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #aebfd4;
+  }
+}
+
+/* ---------------- Lenis smooth scroll ---------------- */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+.lenis.lenis-smooth iframe {
+  pointer-events: none;
+}
+
+@layer components {
+  /* Eyebrow label — kore.ai style mono uppercase tracked tag */
+  .eyebrow {
+    @apply inline-flex items-center gap-2 font-mono text-xs font-medium uppercase tracking-[0.14em] text-ink-soft;
+  }
+
+  /* Gradient text (blue -> teal) */
+  .text-gradient {
+    background: linear-gradient(100deg, #026fe3 0%, #2f9bff 45%, #10b8b0 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+  }
+
+  /* Soft glass card */
+  .glass {
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.6);
+  }
+
+  /* Pill chip */
+  .chip {
+    @apply inline-flex items-center gap-2 rounded-full border border-line bg-white/70 px-4 py-2 text-sm font-medium text-ink-soft backdrop-blur;
+  }
+}
+
+@layer utilities {
+  /* Section vertical rhythm */
+  .section-pad {
+    @apply py-20 md:py-28 lg:py-32;
+  }
+
+  /* kore.ai-style soft mesh / wave background (subtle) */
+  .bg-mesh {
+    background-color: #ffffff;
+    background-image:
+      radial-gradient(55% 50% at 15% 6%, rgba(2, 111, 227, 0.06) 0%, rgba(2, 111, 227, 0) 60%),
+      radial-gradient(45% 45% at 90% 2%, rgba(16, 184, 176, 0.05) 0%, rgba(16, 184, 176, 0) 55%);
+  }
+
+  .bg-mesh-soft {
+    background-color: #fbfcfe;
+    background-image:
+      radial-gradient(40% 40% at 85% 8%, rgba(2, 111, 227, 0.045) 0%, rgba(2, 111, 227, 0) 60%);
+  }
+
+  /* kore.ai signature: faint concentric ripple emanating from the hero */
+  .bg-ripple {
+    background-color: #fbfcfe;
+    background-image:
+      radial-gradient(circle at 50% 26%, rgba(2, 111, 227, 0.05) 0%, rgba(2, 111, 227, 0) 42%),
+      repeating-radial-gradient(
+        circle at 50% 26%,
+        rgba(2, 111, 227, 0.045) 0px,
+        rgba(2, 111, 227, 0.045) 1px,
+        transparent 1px,
+        transparent 96px
+      );
+  }
+
+  /* Dotted grid texture overlay */
+  .bg-grid {
+    background-image:
+      linear-gradient(to right, rgba(10, 26, 47, 0.045) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(10, 26, 47, 0.045) 1px, transparent 1px);
+    background-size: 48px 48px;
+  }
+
+  .bg-dots {
+    background-image: radial-gradient(rgba(10, 26, 47, 0.08) 1px, transparent 1px);
+    background-size: 22px 22px;
+  }
+
+  /* Dotted horizontal divider (kore.ai signature separator) */
+  .divider-dotted {
+    height: 0;
+    border: 0;
+    border-top: 1px dashed rgba(18, 19, 23, 0.2);
+  }
+
+  /* Fade edges (for marquees) */
+  .mask-fade-x {
+    -webkit-mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
+    mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
+  }
+
+  /* Hide scrollbar (legacy helper kept for horizontal tab strips) */
+  .hide-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .hide-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  /* Reveal initial state — GSAP animates to visible; no-JS fallback shows content */
+  .will-reveal {
+    opacity: 0;
+    transform: translateY(28px);
+  }
+  .no-js .will-reveal {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .will-reveal {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+  .animate-marquee,
+  .animate-float,
+  .animate-spin-slow,
+  .animate-pulse-soft {
+    animation: none !important;
+  }
+}
+
+/* ---------------- Custom cursor (Lusion-style) ---------------- */
+.has-cursor,
+.has-cursor a,
+.has-cursor button,
+.has-cursor [data-cursor] {
+  cursor: none;
+}
+
+.cursor-dot,
+.cursor-ring {
+  position: fixed;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  z-index: 9999;
+  border-radius: 9999px;
+  mix-blend-mode: difference;
+  will-change: transform;
+}
+.cursor-dot {
+  width: 6px;
+  height: 6px;
+  margin: -3px 0 0 -3px;
+  background: #fff;
+}
+.cursor-ring {
+  width: 34px;
+  height: 34px;
+  margin: -17px 0 0 -17px;
+  border: 1px solid #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: width 0.25s ease, height 0.25s ease, margin 0.25s ease,
+    background 0.25s ease, border-color 0.25s ease;
+}
+.cursor-ring--active {
+  width: 64px;
+  height: 64px;
+  margin: -32px 0 0 -32px;
+  background: rgba(255, 255, 255, 0.12);
+}
+.cursor-label {
+  font-family: "JetBrains Mono", ui-monospace, monospace;
+  font-size: 0.6rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #fff;
+  white-space: nowrap;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+.cursor-ring--label {
+  width: 86px;
+  height: 86px;
+  margin: -43px 0 0 -43px;
+  background: #026fe3;
+  border-color: transparent;
+  mix-blend-mode: normal;
+}
+.cursor-ring--label .cursor-label {
+  opacity: 1;
+}
+
+@media (max-width: 768px), (pointer: coarse) {
+  .cursor-dot,
+  .cursor-ring {
+    display: none;
+  }
+}
+
+/* Soft vignette for immersive dark sections */
+.vignette {
+  background: radial-gradient(
+    120% 100% at 50% 0%,
+    transparent 50%,
+    rgba(0, 0, 0, 0.55) 100%
+  );
+}
+
+/* Subtle film grain overlay */
+.grain::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.04;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }

@@ -1,35 +1,38 @@
-export function scrollTo(sectionId, offset = 80, duration = 900) {
-    const el = document.getElementById(sectionId);
-    if (!el) return;
+import { getLenis } from "./smoothScroll";
 
-    const start = window.scrollY;
-    const target = el.getBoundingClientRect().top + window.scrollY - offset;
-    const distance = target - start;
+/**
+ * Smoothly scrolls to a section. Uses Lenis when available (so the motion
+ * matches the page's smooth-scroll feel), otherwise falls back to a manual
+ * eased rAF animation for reduced-motion / no-Lenis environments.
+ */
+export function scrollTo(sectionId, offset = 80, duration = 1.2) {
+  const el = document.getElementById(sectionId);
+  if (!el) return;
 
-    // If already there, don't animate
-    if (Math.abs(distance) < 1) return;
+  const lenis = getLenis();
+  if (lenis) {
+    lenis.scrollTo(el, { offset: -offset, duration });
+    return;
+  }
 
-    let startTime = null;
+  // Fallback: cubic ease-in-out rAF scroll.
+  const start = window.scrollY;
+  const target = el.getBoundingClientRect().top + window.scrollY - offset;
+  const distance = target - start;
+  if (Math.abs(distance) < 1) return;
 
-    // Cubic ease-in-out: slow → fast → slow
-    function easeInOutCubic(t) {
-        return t < 0.5
-            ? 4 * t * t * t
-            : 1 - Math.pow(-2 * t + 2, 3) / 2;
-    }
+  const ms = duration * 1000;
+  let startTime = null;
 
-    function step(timestamp) {
-        if (!startTime) startTime = timestamp;
-        const elapsed = timestamp - startTime;
-        const progress = Math.min(elapsed / duration, 1); // clamp 0–1
-        const eased = easeInOutCubic(progress);
+  const easeInOutCubic = (t) =>
+    t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
 
-        window.scrollTo(0, start + distance * eased);
+  const step = (timestamp) => {
+    if (!startTime) startTime = timestamp;
+    const progress = Math.min((timestamp - startTime) / ms, 1);
+    window.scrollTo(0, start + distance * easeInOutCubic(progress));
+    if (progress < 1) requestAnimationFrame(step);
+  };
 
-        if (progress < 1) {
-            requestAnimationFrame(step);
-        }
-    }
-
-    requestAnimationFrame(step);
+  requestAnimationFrame(step);
 }

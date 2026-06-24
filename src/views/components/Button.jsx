@@ -1,22 +1,67 @@
-import React from 'react';
+import { FaArrowRight } from "react-icons/fa";
+import { cn } from "../../lib/utils";
 
-function Button({ text, variant = "primary", className = "", onClick }) {
-  const baseClasses = "flex items-center justify-center font-roboto text-base font-bold rounded-full transition-all duration-300 whitespace-nowrap cursor-pointer ";
+const base =
+  "group inline-flex items-center justify-center gap-2.5 font-mono text-xs md:text-[0.78rem] font-medium uppercase tracking-[0.08em] rounded-[10px] transition-all duration-300 ease-smooth whitespace-nowrap cursor-pointer select-none";
 
-  const variants = {
-    primary: "bg-[#026FE3] text-white shadow-lg shadow-blue-500/30 hover:bg-blue-600 hover:shadow-blue-500/50 hover:scale-105",
-    white: "bg-white text-[#026FE3] shadow-lg hover:shadow-xl hover:scale-105 ",
-    whiteFlat: "bg-white text-[#026FE3] hover:bg-gray-100",
-    transparent: "bg-transparent border-solid border-[1.5px] border-sky-500 text-[#036FE2] shadow-lg hover:bg-gray-100 hover:shadow-blue-600/50 hover:scale-105 "
-  };
+const variants = {
+  // Primary — near-black, kore.ai signature
+  primary: "bg-ink text-white hover:bg-ink-700 hover:-translate-y-[1px]",
+  // Secondary — white with hairline border
+  secondary:
+    "bg-white text-ink border border-line hover:border-ink/40 hover:-translate-y-[1px]",
+  ghost:
+    "bg-white text-ink border border-line hover:border-ink/40 hover:-translate-y-[1px]",
+  // On dark backgrounds
+  white: "bg-white text-ink hover:bg-cloud hover:-translate-y-[1px]",
+  outlineLight:
+    "bg-transparent text-white border border-white/35 hover:bg-white/10 hover:-translate-y-[1px]",
+  // Legacy alias used by pricing
+  transparent:
+    "bg-white text-ink border border-line hover:border-ink/40 hover:-translate-y-[1px]",
+  // Optional brand-blue (used sparingly)
+  accent: "bg-accent text-white hover:bg-accent-ink hover:-translate-y-[1px]",
+};
 
-  const combinedClasses = `${baseClasses} ${variants[variant] || variants.primary} ${className}`;
+export default function Button({
+  text,
+  children,
+  variant = "primary",
+  className = "",
+  onClick,
+  href,
+  withArrow = false,
+  bullet = true,
+  type = "button",
+}) {
+  const classes = cn(base, variants[variant] || variants.primary, className);
+
+  const mark = withArrow ? (
+    <FaArrowRight className="text-[0.85em] transition-transform duration-300 group-hover:translate-x-1" />
+  ) : bullet ? (
+    <span className="text-[1.15em] leading-none -mt-px transition-transform duration-300 group-hover:translate-x-0.5">
+      •
+    </span>
+  ) : null;
+
+  const content = (
+    <>
+      {text || children}
+      {mark}
+    </>
+  );
+
+  if (href) {
+    return (
+      <a className={classes} href={href} onClick={onClick}>
+        {content}
+      </a>
+    );
+  }
 
   return (
-    <button className={combinedClasses} onClick={onClick}>
-      {text}
+    <button className={classes} onClick={onClick} type={type}>
+      {content}
     </button>
   );
 }
-
-export default Button;

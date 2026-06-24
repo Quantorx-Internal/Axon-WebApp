@@ -4,65 +4,50 @@ import TrustedWorldwide from "./HomeViews/TrustedWorldwide";
 import PlatformShowcase from "./HomeViews/PlatformShowcase";
 import Enterprise from "./HomeViews/Enterprise";
 import CloudEcosystem from "./HomeViews/CloudEcosystem";
-import Industry from "./HomeViews/Marwan/Industry";
-import SpatialData from "./HomeViews/Marwan/SpatialData";
-import Plans from "./HomeViews/Marwan/Plans";
-import RequestDemo from "./HomeViews/Marwan/RequestDemo";
-import Footer from "./HomeViews/Marwan/Footer";
-import { ScrollReveal } from "../components/ScrollReveal";
+import Industry from "./HomeViews/Industry";
+import SpatialData from "./HomeViews/SpatialData";
+import Plans from "./HomeViews/Plans";
+import RequestDemo from "./HomeViews/RequestDemo";
+import Footer from "./HomeViews/Footer";
+import { WhyAxon } from "./HomeViews/WhyAxon";
+import { ValuesMarquee } from "../components/ValuesMarquee";
 
-export default function Home(props) {
-    return (
-        <div className="flex flex-col bg-white w-full">
-            <section id="hero">
-                <Hero />
-            </section>
-            <ScrollReveal>
-                <section id="platform">
-                    <PlatformUsers />
-                </section>
-            </ScrollReveal>
-            <ScrollReveal>
-                <section id="customers">
-                    <TrustedWorldwide />
-                </section>
-            </ScrollReveal>
-            <ScrollReveal>
-                <section id="showcase">
-                    <PlatformShowcase />
-                </section>
-            </ScrollReveal>
-            <ScrollReveal>
-                <section id="enterprise">
-                    <Enterprise />
-                </section>
-            </ScrollReveal>
-            <ScrollReveal>
-                <section id="solution">
-                    <CloudEcosystem />
-                </section>
-            </ScrollReveal>
-            <ScrollReveal>
-                <section id="industry">
-                    <Industry />
-                </section>
-            </ScrollReveal>
-            <ScrollReveal>
-                <section id="contact">
-                    <SpatialData />
-                </section>
-            </ScrollReveal>
-            <ScrollReveal>
-                <section id="plans">
-                    <Plans />
-                </section>
-            </ScrollReveal>
-            <ScrollReveal>
-                <section id="request-demo">
-                    <RequestDemo />
-                </section>
-            </ScrollReveal>
-            <Footer />
-        </div>
-    );
+export default function Home() {
+  return (
+    <div className="flex flex-col bg-white w-full overflow-x-clip">
+      <section id="hero">
+        <Hero />
+      </section>
+      <section id="customers">
+        <TrustedWorldwide />
+      </section>
+      <ValuesMarquee />
+      <WhyAxon />
+      <section id="platform">
+        <PlatformUsers />
+      </section>
+      <section id="showcase">
+        <PlatformShowcase />
+      </section>
+      <section id="enterprise">
+        <Enterprise />
+      </section>
+      <section id="solution">
+        <CloudEcosystem />
+      </section>
+      <section id="industry">
+        <Industry />
+      </section>
+      <section id="contact">
+        <SpatialData />
+      </section>
+      <section id="plans">
+        <Plans />
+      </section>
+      <section id="request-demo">
+        <RequestDemo />
+      </section>
+      <Footer />
+    </div>
+  );
 }

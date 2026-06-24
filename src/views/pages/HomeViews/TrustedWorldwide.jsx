@@ -1,20 +1,78 @@
-import React from "react";
+import { Marquee } from "../../components/Marquee";
+import { Reveal } from "../../components/Reveal";
+import { Counter } from "../../components/Counter";
+import { Eyebrow } from "../../components/Eyebrow";
+
+const partners = [
+  { src: "/AWSIconClean.png", alt: "AWS" },
+  { src: "/AzureIconClean.png", alt: "Microsoft Azure" },
+  { src: "/SnowFlakeClean.png", alt: "Snowflake" },
+  { src: "/DataBricksClean.png", alt: "Databricks" },
+  { src: "/CloudIconClean.png", alt: "Google Cloud" },
+];
+
+const stats = [
+  { value: 500, suffix: "+", label: "Enterprise teams" },
+  { value: 120, suffix: "M", label: "Spatial queries / mo" },
+  { value: 60, suffix: "+", label: "Countries served" },
+  { value: 99.9, suffix: "%", decimals: 1, label: "Platform uptime" },
+];
 
 export default function TrustedWorldwide() {
-    return (
-        <section
-            className="w-full bg-[#031125] flex flex-col items-center justify-center text-center bg-cover bg-center bg-no-repeat relative px-4 aspect-[1920/758] min-h-[400px] max-h-[700px]"
-            style={{ backgroundImage: 'url(/WorldwideIBackground.png)' }}
-        >
-            <div className="absolute inset-0 bg-[#031125]/80 pointer-events-none"></div>
-            <div className="relative z-10 flex flex-col items-center">
-                <h2 className="text-white text-3xl lg:text-4xl font-bold tracking-tight mb-4 md:mb-6">
-                    Trusted Worldwide
-                </h2>
-                <p className="text-white/90 text-base leading-relaxed max-w-4xl">
-                    Leading organizations across every industry rely on AXON
-                </p>
+  return (
+    <section className="w-full bg-white border-b border-line">
+      <div className="max-w-7xl mx-auto px-5 md:px-8 py-16 md:py-24">
+        <Reveal className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
+          <div className="flex flex-col gap-4 max-w-xl">
+            <Eyebrow brace>Trusted worldwide</Eyebrow>
+            <h2 className="font-display text-3xl lg:text-[2.6rem] font-medium text-ink tracking-[-0.035em] leading-[1.05]">
+              Built with the teams mapping the world.
+            </h2>
+          </div>
+          <p className="font-mono text-xs uppercase tracking-[0.12em] text-ink-muted md:text-right md:max-w-[14rem] leading-relaxed">
+            Leading organizations across every industry rely on AXON
+          </p>
+        </Reveal>
+
+        <Reveal delay={0.05}>
+          <Marquee duration={32} className="mb-16 py-2">
+            {partners.map((p, i) => (
+              <div
+                key={`${p.alt}-${i}`}
+                className="flex items-center justify-center mx-8 md:mx-14 h-16"
+              >
+                <img
+                  src={p.src}
+                  alt={p.alt}
+                  className="h-11 md:h-14 w-auto object-contain grayscale opacity-50 hover:grayscale-0 hover:opacity-100 hover:scale-110 transition-all duration-500 ease-smooth"
+                />
+              </div>
+            ))}
+          </Marquee>
+        </Reveal>
+
+        <Reveal stagger={0.1} className="grid grid-cols-2 lg:grid-cols-4">
+          {stats.map((s, i) => (
+            <div
+              key={s.label}
+              className={`flex flex-col gap-2 py-5 lg:py-0 px-2 lg:px-8 ${
+                i > 0 ? "lg:border-l border-dashed border-ink/15" : ""
+              }`}
+            >
+              <div className="font-display text-5xl md:text-6xl font-medium text-ink tracking-[-0.04em]">
+                <Counter
+                  value={s.value}
+                  suffix={s.suffix}
+                  decimals={s.decimals || 0}
+                />
+              </div>
+              <p className="font-mono text-[0.7rem] uppercase tracking-[0.1em] text-ink-muted">
+                {s.label}
+              </p>
             </div>
-        </section>
-    );
+          ))}
+        </Reveal>
+      </div>
+    </section>
+  );
 }
