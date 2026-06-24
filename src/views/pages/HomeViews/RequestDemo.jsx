@@ -14,11 +14,11 @@ const selectBase =
 
 const jobTitleOptions = ["CEO / Founder", "CTO", "VP of Engineering", "Engineering Manager", "Product Manager", "Data Scientist", "GIS Analyst", "Developer", "Other"];
 const employeeOptions = ["1-10", "11-50", "51-200", "201-500", "501-1000", "1001-5000", "5000+"];
-const storageOptions = ["AWS S3", "Google Cloud Storage", "Azure Blob", "PostgreSQL / PostGIS", "Snowflake", "Databricks", "Other"];
+const storageOptions = ["PostgreSQL / PostGIS", "Oracle Spatial", "SQL Server", "ArcGIS Online / Enterprise", "Shapefiles", "Other"];
 
 const expectations = [
-  "A focused 20-minute walkthrough with a spatial expert",
-  "A tailored look at workflows for your industry",
+  "A focused 20-minute walkthrough with a GIS + AI specialist",
+  "A tailored look at workflows for your industry, in English or Arabic",
   "Answers on deployment, security, and pricing",
 ];
 

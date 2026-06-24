@@ -15,29 +15,29 @@ gsap.registerPlugin(ScrollTrigger);
 
 const items = [
   {
-    title: "Nova Intelligence Engine",
-    desc: "Our proprietary AI engine processes billions of data points to deliver real-time spatial insights across your organization.",
+    title: "Natural-language agent",
+    desc: "Ask in English or Arabic. The agent plans the analysis, queries your data, and replies with a short, grounded answer — never a guess.",
     Mock: ChatMock,
   },
   {
-    title: "Unified Platform Dashboard",
-    desc: "A single pane of glass for all your location intelligence — analytics, visualization, and collaboration in one place.",
-    Mock: AnalyticsMock,
-  },
-  {
-    title: "Advanced Data Integration",
-    desc: "Seamlessly connect and analyze layers from any global data warehouse or database within a single unified view.",
-    Mock: CodeMock,
-  },
-  {
-    title: "Predictive Analytics",
-    desc: "Anticipate trends and optimize resource allocation with predictive models built directly into the platform.",
+    title: "Interactive ArcGIS maps",
+    desc: "Answers appear as live map layers — districts, parcels, buffers, heatmaps — that you can highlight, filter, and explore.",
     Mock: MapMock,
   },
   {
-    title: "Automated Workflows",
-    desc: "Trigger intelligent actions automatically based on spatial rules, saving thousands of hours of manual work.",
+    title: "Your spatial data, connected",
+    desc: "Connect PostGIS, Oracle Spatial, SQL Server, and ArcGIS feature services. AXON discovers the schema for you — no data movement.",
+    Mock: CodeMock,
+  },
+  {
+    title: "Automated spatial analysis",
+    desc: "Buffer, proximity, isochrone, routing, clustering, and more — with charts and tables generated on demand.",
     Mock: AnalyticsMock,
+  },
+  {
+    title: "Shapefile upload & instant answers",
+    desc: "Drop in a shapefile and start asking questions about the area right away — no setup, no GIS desk.",
+    Mock: MapMock,
   },
 ];
 

@@ -73,7 +73,7 @@ export function AnalyticsMock({ className }) {
 /* ---------------- GIS map ---------------- */
 export function MapMock({ className }) {
   return (
-    <MockFrame title="axon · atlas" className={className}>
+    <MockFrame title="axon · map" className={className}>
       <div className="relative h-[320px] bg-[#eef3f9] bg-grid overflow-hidden">
         {/* heat blobs */}
         <div className="absolute left-[18%] top-[30%] w-40 h-40 rounded-full bg-accent/25 blur-2xl" />
@@ -111,13 +111,13 @@ export function MapMock({ className }) {
             <circle cx="11" cy="11" r="7" />
             <path d="m21 21-4.3-4.3" strokeLinecap="round" />
           </svg>
-          <span className="text-xs text-ink-muted">Find optimal retail sites near…</span>
+          <span className="text-xs text-ink-muted">Parcels within 2 km of Al Olaya…</span>
         </div>
 
         {/* legend card */}
         <div className="absolute bottom-4 left-4 bg-white/95 backdrop-blur border border-line rounded-xl p-3 shadow-soft">
           <p className="font-mono text-[0.58rem] uppercase tracking-wider text-ink-muted mb-2">
-            Demand density
+            Land value
           </p>
           <div className="h-2 w-32 rounded-full bg-gradient-to-r from-teal via-accent to-violet" />
           <div className="flex justify-between mt-1">
@@ -128,7 +128,7 @@ export function MapMock({ className }) {
 
         {/* layers */}
         <div className="absolute top-16 right-4 bg-white/95 backdrop-blur border border-line rounded-xl p-2.5 shadow-soft flex flex-col gap-1.5">
-          {["Heatmap", "Roads", "Regions"].map((l, i) => (
+          {["Parcels", "Roads", "Districts"].map((l, i) => (
             <div key={l} className="flex items-center gap-2">
               <span className={cn("w-3 h-3 rounded-[4px]", i === 0 ? "bg-accent" : "border border-ink/30")} />
               <span className="font-mono text-[0.58rem] text-ink-soft">{l}</span>
@@ -152,30 +152,31 @@ export function ChatMock({ className }) {
             </svg>
           </span>
           <div>
-            <p className="text-sm font-medium text-ink leading-none">Nova Agent</p>
+            <p className="text-sm font-medium text-ink leading-none">Axon Agent</p>
             <p className="font-mono text-[0.6rem] text-teal mt-1 flex items-center gap-1">
               <span className="w-1.5 h-1.5 rounded-full bg-teal" /> online
             </p>
           </div>
         </div>
 
-        <div className="self-end max-w-[80%] bg-accent text-white rounded-2xl rounded-tr-sm px-4 py-2.5 text-sm">
-          Where should we open 3 new stores in Austin?
+        <div className="self-end max-w-[82%] bg-accent text-white rounded-2xl rounded-tr-sm px-4 py-2.5 text-sm">
+          Average land price within 5 km of the metro, northern Riyadh?
         </div>
 
         <div className="self-start max-w-[88%] bg-mist border border-line rounded-2xl rounded-tl-sm px-4 py-3 text-sm text-ink-soft">
-          Based on footfall, competition and drive-time, here are the top sites:
+          Across 5 districts within 5 km of the line, these have the highest land
+          value:
           <div className="mt-3 flex flex-col gap-2">
             {[
-              ["South Congress", "score 0.94"],
-              ["Mueller District", "score 0.91"],
-              ["Domain North", "score 0.88"],
-            ].map(([name, score]) => (
+              ["Al Olaya", "SAR 9,400/m²"],
+              ["Al Yasmin", "SAR 7,100/m²"],
+              ["Al Malqa", "SAR 6,800/m²"],
+            ].map(([name, price]) => (
               <div key={name} className="flex items-center justify-between bg-white border border-line rounded-lg px-3 py-2">
                 <span className="flex items-center gap-2 text-ink text-[0.8rem]">
                   <AxonMark className="w-3.5 h-3.5" /> {name}
                 </span>
-                <span className="font-mono text-[0.62rem] text-accent">{score}</span>
+                <span className="font-mono text-[0.62rem] text-accent">{price}</span>
               </div>
             ))}
           </div>
@@ -188,7 +189,7 @@ export function ChatMock({ className }) {
         </div>
 
         <div className="mt-auto flex items-center gap-2 border border-line rounded-xl px-3 h-10">
-          <span className="text-xs text-ink-muted flex-1">Ask AXON anything…</span>
+          <span className="text-xs text-ink-muted flex-1">Ask in English or Arabic…</span>
           <span className="w-6 h-6 rounded-md bg-ink text-white flex items-center justify-center text-xs">↑</span>
         </div>
       </div>
@@ -199,32 +200,31 @@ export function ChatMock({ className }) {
 /* ---------------- Code / API ---------------- */
 export function CodeMock({ className }) {
   const lines = [
-    [["import", "kw"], [" { axon } ", "fn"], ["from", "kw"], [" 'axon-sdk'", "str"]],
+    [["POST", "kw"], [" /api/agents/runs/stream", "fn"]],
     [],
-    [["const", "kw"], [" sites ", "var"], ["= await", "kw"], [" axon.", ""], ["query", "fn"], ["({", ""]],
-    [["  layer:", "prop"], [" 'demand',", "str"]],
-    [["  near:", "prop"], [" [30.26, -97.74],", "num"]],
-    [["  topK:", "prop"], [" 3,", "num"]],
-    [["})", ""]],
+    [["{", ""]],
+    [['  "message":', "prop"], [' "Plots within 2km of Al Olaya",', "str"]],
+    [['  "lang":', "prop"], [' "auto"', "str"]],
+    [["}", ""]],
   ];
   const color = {
     kw: "text-violet",
-    fn: "text-accent",
-    str: "text-teal",
-    num: "text-accent",
-    prop: "text-ink",
-    var: "text-ink",
-    "": "text-ink-soft",
+    fn: "text-teal-bright",
+    str: "text-accent-soft",
+    num: "text-accent-soft",
+    prop: "text-white/90",
+    var: "text-white",
+    "": "text-white/55",
   };
   return (
-    <MockFrame title="axon · sdk" className={className}>
+    <MockFrame title="axon · api" className={className}>
       <div className="p-5 bg-[#0b0c0e] min-h-[320px]">
         <div className="flex items-center justify-between mb-4">
           <span className="font-mono text-[0.62rem] uppercase tracking-wider text-white/40">
-            query.ts
+            request.http
           </span>
           <span className="font-mono text-[0.6rem] text-teal-bright bg-teal/15 rounded px-2 py-0.5">
-            200 OK
+            200 OK · SSE
           </span>
         </div>
         <pre className="font-mono text-[0.8rem] leading-7">
@@ -246,9 +246,9 @@ export function CodeMock({ className }) {
           ))}
         </pre>
         <div className="mt-4 rounded-lg border border-white/10 bg-white/5 p-3">
-          <p className="font-mono text-[0.62rem] text-white/40 mb-2">→ response</p>
+          <p className="font-mono text-[0.62rem] text-white/40 mb-2">→ streaming response</p>
           <p className="font-mono text-[0.7rem] text-teal-bright">
-            3 sites · 142ms · cached
+            6 parcels · 92 ms to first token
           </p>
         </div>
       </div>

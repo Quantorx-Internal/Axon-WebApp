@@ -43,8 +43,8 @@ export default function SpatialData() {
             delay={0.1}
             className="mt-6 text-white/60 text-lg md:text-xl max-w-xl leading-relaxed"
           >
-            Start your free trial today and experience the power of location
-            intelligence.
+            Book a 20-minute walkthrough and watch AXON answer questions about
+            your own data — in English or Arabic.
           </Reveal>
           <Reveal
             delay={0.2}

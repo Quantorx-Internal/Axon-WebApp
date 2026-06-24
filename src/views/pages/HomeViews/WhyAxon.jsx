@@ -3,23 +3,23 @@ import { SectionHeader } from "../../components/SectionHeader";
 const cards = [
   {
     n: "01",
-    label: "Outcomes",
-    title: "From spatial data to decisions",
-    desc: "Agentic AI reasons over your location context and acts — turning raw geospatial data into decisions your teams can ship.",
+    label: "Natural language",
+    title: "Just ask, in your own words",
+    desc: "Anyone on your team can query spatial data in English or Arabic — no SQL, no GIS training. Ask a question, get back a map, a chart, and a clear answer.",
     dark: true,
   },
   {
     n: "02",
-    label: "Accessibility",
-    title: "One platform, every team",
-    desc: "Analysts, scientists, and developers work in the same place — drag-and-drop analytics, rich visualization, and a full API.",
+    label: "Grounded answers",
+    title: "Built on your real data",
+    desc: "Every answer is assembled from live queries against your own spatial databases and ArcGIS services — discovered, validated, and never invented.",
     dark: false,
   },
   {
     n: "03",
-    label: "Trust",
-    title: "Enterprise-grade by default",
-    desc: "SOC 2, SSO, a 99.9% uptime SLA, and deploy-anywhere flexibility — built for the most demanding organizations.",
+    label: "Enterprise",
+    title: "Deploy anywhere, govern everywhere",
+    desc: "SSO, role-based access, audit trails, and a 99.9% uptime SLA — running fully managed in the cloud or self-hosted inside your own network.",
     dark: true,
   },
 ];

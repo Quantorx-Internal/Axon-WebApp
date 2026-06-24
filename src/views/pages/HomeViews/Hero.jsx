@@ -14,25 +14,25 @@ gsap.registerPlugin(ScrollTrigger);
 
 const testCases = [
   {
-    title: "Network planning",
-    tag: "Telecom",
+    title: "Find sites near transit",
+    tag: "Real estate",
     bgImage:
       "https://storage.googleapis.com/tagjs-prod.appspot.com/v1/292NacUvQT/250v9pdf_expires_30_days.png",
-    duration: "20:00",
+    duration: "2:14",
   },
   {
-    title: "Customer targeting",
-    tag: "Retail",
+    title: "Proximity & buffer analysis",
+    tag: "Government",
     bgImage:
       "https://storage.googleapis.com/tagjs-prod.appspot.com/v1/292NacUvQT/vdmri7wb_expires_30_days.png",
-    duration: "20:00",
+    duration: "1:48",
   },
   {
-    title: "Risk & asset mapping",
-    tag: "Enterprise",
+    title: "Coverage & network planning",
+    tag: "Telecom",
     bgImage:
       "https://storage.googleapis.com/tagjs-prod.appspot.com/v1/292NacUvQT/6sg7ezd6_expires_30_days.png",
-    duration: "20:00",
+    duration: "3:02",
   },
 ];
 
@@ -118,8 +118,8 @@ export default function Hero() {
               delay={0.2}
               className="mt-8 text-lg md:text-xl text-white/55 leading-relaxed max-w-xl"
             >
-              The location intelligence platform that turns spatial data into
-              autonomous, enterprise-grade decisions.
+              Ask spatial questions in plain language — in English or Arabic —
+              and get instant maps, charts, and answers. No SQL. No GIS training.
             </Reveal>
 
             <Reveal
@@ -163,7 +163,7 @@ export default function Hero() {
             index="✦"
             label="Common workflows"
             title="Explore common test cases"
-            description="See how AXON handles the workflows your teams run every day."
+            description="See how AXON answers the spatial questions your teams ask every day."
             className="mb-12 md:mb-14"
           />
 

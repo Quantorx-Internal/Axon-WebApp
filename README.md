@@ -1,47 +1,56 @@
-# Axon WebApp
+# AXON — Web App
 
-A React + Tailwind CSS web application built with the **MVVM (Model-View-ViewModel)** design pattern.
+Marketing site for **AXON**, the AI-native GIS platform. Ask spatial questions in
+plain language — in **English or Arabic** — and get instant ArcGIS maps, charts,
+and grounded answers. No SQL, no GIS training.
 
-## Architecture
+Built with **React + Vite + Tailwind CSS**, with GSAP / Framer Motion / Lenis for
+the motion and scroll experience.
 
-```
-src/
-├── models/          # Data structures & business entities
-├── services/        # Data access, API calls, persistence logic
-├── viewmodels/      # Custom hooks bridging Models/Services ↔ Views
-└── views/
-    ├── components/  # Reusable UI components
-    └── pages/       # Page-level view compositions
-```
+## What the site covers
 
-| Layer       | Responsibility                                  | Example               |
-| ----------- | ----------------------------------------------- | --------------------- |
-| **Model**   | Plain data classes, no UI awareness              | `TodoModel.js`        |
-| **Service** | CRUD operations, localStorage/API calls          | `TodoService.js`      |
-| **ViewModel** | React hooks exposing state + actions to views  | `useTodoViewModel.js` |
-| **View**    | JSX components, only consumes ViewModel output   | `TodoPage.jsx`        |
+The single-page experience (`src/views/pages/Home.jsx`) is composed of section
+views under `src/views/pages/HomeViews/`:
 
-## Getting Started
+| Section | Purpose |
+| --- | --- |
+| `Hero` | Headline, value prop, and common test cases |
+| `TrustedWorldwide` | Foundation logos + product metrics |
+| `WhyAxon` | The three core differentiators (natural language, grounded answers, enterprise) |
+| `PlatformUsers` | Capability tabs — Ask, Visualize, Analyze, Integrate |
+| `PlatformShowcase` | Pinned scroll walkthrough of real features |
+| `Enterprise` | Security, governance, performance, deployment |
+| `CloudEcosystem` | Spatial data connectors + deploy-anywhere |
+| `Industry` | Sector use cases (real estate, government, telecom, …) |
+| `SpatialData` | Mid-page demo CTA |
+| `Plans` | Pricing tiers |
+| `RequestDemo` | Demo request form |
+| `Footer` | Links, contact, socials |
+
+Reusable UI and the product mockups live in `src/views/components/`
+(`Mockups.jsx` renders the chat, map, analytics, and API previews).
+
+## Getting started
 
 ```bash
-# Install dependencies
-npm install
-
-# Start dev server
-npm run dev
-
-# Build for production
-npm run build
-
-# Preview production build
-npm run preview
+bun install      # or: npm install
+bun run dev      # start the dev server (Vite)
+bun run build    # production build → dist/
+bun run preview  # preview the production build
 ```
 
-## Tech Stack
+## Tech stack
 
-- **React 18** — UI library
-- **Vite** — Build tool & dev server
-- **Tailwind CSS 3** — Utility-first styling
+- **React 18** + **Vite 5**
+- **Tailwind CSS 3**
+- **GSAP** (ScrollTrigger), **Framer Motion**, **Lenis** (smooth scroll)
+- **react-icons**, **react-phone-input-2**
+
+## Related
+
+The actual product (Angular + FastAPI + an OpenAI Agents SDK service over
+PostGIS / ArcGIS) lives in the separate `axon` repository. Keep marketing claims
+on this site grounded in that product's real capabilities.
 
 ## License
 

@@ -6,16 +6,14 @@ import { Eyebrow } from "../../components/Eyebrow";
 const partners = [
   { src: "/AWSIconClean.png", alt: "AWS" },
   { src: "/AzureIconClean.png", alt: "Microsoft Azure" },
-  { src: "/SnowFlakeClean.png", alt: "Snowflake" },
-  { src: "/DataBricksClean.png", alt: "Databricks" },
   { src: "/CloudIconClean.png", alt: "Google Cloud" },
 ];
 
 const stats = [
-  { value: 500, suffix: "+", label: "Enterprise teams" },
-  { value: 120, suffix: "M", label: "Spatial queries / mo" },
-  { value: 60, suffix: "+", label: "Countries served" },
-  { value: 99.9, suffix: "%", decimals: 1, label: "Platform uptime" },
+  { value: 95, suffix: "%", label: "Faster spatial insight" },
+  { value: 80, suffix: "%", label: "Less GIS training" },
+  { value: 25, suffix: "+", label: "Spatial operations" },
+  { value: 99.9, suffix: "%", decimals: 1, label: "Uptime SLA" },
 ];
 
 export default function TrustedWorldwide() {
@@ -24,13 +22,13 @@ export default function TrustedWorldwide() {
       <div className="max-w-7xl mx-auto px-5 md:px-8 py-16 md:py-24">
         <Reveal className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
           <div className="flex flex-col gap-4 max-w-xl">
-            <Eyebrow brace>Trusted worldwide</Eyebrow>
+            <Eyebrow brace>Trusted foundation</Eyebrow>
             <h2 className="font-display text-3xl lg:text-[2.6rem] font-medium text-ink tracking-[-0.035em] leading-[1.05]">
-              Built with the teams mapping the world.
+              Built for the teams mapping the world.
             </h2>
           </div>
-          <p className="font-mono text-xs uppercase tracking-[0.12em] text-ink-muted md:text-right md:max-w-[14rem] leading-relaxed">
-            Leading organizations across every industry rely on AXON
+          <p className="font-mono text-xs uppercase tracking-[0.12em] text-ink-muted md:text-right md:max-w-[15rem] leading-relaxed">
+            Runs on the cloud you already trust — or fully self-hosted
           </p>
         </Reveal>
 

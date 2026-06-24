@@ -12,47 +12,47 @@ import { scrollTo } from "@/lib/scrollTo";
 
 const tabs = [
   {
-    name: "Analytics",
-    Mock: AnalyticsMock,
-    title: "Automated spatial analysis at scale",
-    desc: "Turn complex geospatial data into actionable insights with an intuitive, drag-and-drop analytics workspace.",
-    points: [
-      "Automated analysis with a drag-and-drop interface",
-      "100+ ready-to-go components with native ML & AI",
-      "Run on billions of rows without moving your data",
-    ],
-  },
-  {
-    name: "Visualization",
-    Mock: MapMock,
-    title: "Unmatched data visualization capabilities",
-    desc: "Render massive datasets in real time and tell clear, compelling spatial stories your stakeholders understand.",
-    points: [
-      "GPU-accelerated rendering for billions of points",
-      "Beautiful, brandable maps and dashboards",
-      "Real-time layers from any warehouse or database",
-    ],
-  },
-  {
-    name: "AI Agents",
+    name: "Ask",
     Mock: ChatMock,
-    title: "Agentic AI that works alongside your team",
-    desc: "Deploy AI agents that reason over spatial context, automate workflows, and surface answers on demand.",
+    title: "Query your data in plain language",
+    desc: "Ask spatial questions the way you'd ask a colleague — in English or Arabic — and get a clear answer back in seconds.",
     points: [
-      "Natural-language spatial queries and reports",
-      "Autonomous workflows triggered by spatial rules",
-      "Native APIs, AI agents & MCP tools",
+      "No SQL or GIS training required",
+      "Full English and Arabic support, including place names",
+      "Answers stream in real time, grounded in your own data",
     ],
   },
   {
-    name: "App Development",
-    Mock: CodeMock,
-    title: "Build and ship location apps fast",
-    desc: "Go from prototype to production with developer-first tooling, robust APIs, and flexible deployment.",
+    name: "Visualize",
+    Mock: MapMock,
+    title: "See every answer on the map",
+    desc: "Results render as live ArcGIS layers you can explore, highlight, and drill into — not walls of text.",
     points: [
-      "Composable SDKs and a full REST/GraphQL API",
-      "Embed maps and analytics into any product",
-      "Deploy in the cloud or self-hosted",
+      "ArcGIS basemaps and feature layers, light or dark",
+      "Heatmaps, clusters, buffers, and routes on demand",
+      "Upload a shapefile and ask about the area right away",
+    ],
+  },
+  {
+    name: "Analyze",
+    Mock: AnalyticsMock,
+    title: "Spatial analysis, fully automated",
+    desc: "AXON discovers your schema, resolves the right values, runs the analysis, and explains the result — no expert in the loop.",
+    points: [
+      "25+ operations: buffer, proximity, isochrone, routing",
+      "Charts and tables generated on demand",
+      "Read-only, validated queries — your data stays safe",
+    ],
+  },
+  {
+    name: "Integrate",
+    Mock: CodeMock,
+    title: "Bring AXON into your own stack",
+    desc: "A clean API and live map tools let you embed AXON wherever your teams already work.",
+    points: [
+      "REST API with real-time SSE streaming",
+      "MCP tools for live, in-app map actions",
+      "Deploy in the cloud or your own VPC",
     ],
   },
 ];
@@ -70,8 +70,8 @@ export default function PlatformUsers() {
         <SectionHeader
           index="01"
           label="Platform"
-          title="One location intelligence platform for all users"
-          description="From data analysts to developers, AXON makes spatial analysis accessible across your whole organization."
+          title="One platform for everyone who works with location"
+          description="From planners and analysts to developers, AXON makes spatial analysis accessible across your whole organization — in English and Arabic."
           className="max-w-3xl"
         />
 

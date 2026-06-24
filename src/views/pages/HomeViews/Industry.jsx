@@ -6,38 +6,38 @@ import { scrollTo } from "@/lib/scrollTo";
 const industries = [
   {
     n: "01",
-    name: "Telecom",
-    desc: "Smarter network planning, coverage optimization, and rollout prioritization.",
+    name: "Real Estate",
+    desc: "Site evaluation, market analysis, and neighborhood assessment — value a plot in minutes, not weeks.",
     grad: "from-accent/30 to-teal/20",
   },
   {
     n: "02",
-    name: "Finance",
-    desc: "Flexible spatial analytics for risk, expansion, and portfolio insight.",
+    name: "Government & Planning",
+    desc: "Land use, infrastructure, and demographics — self-service spatial queries for planning and permits.",
     grad: "from-violet/30 to-accent/20",
   },
   {
     n: "03",
-    name: "Retail & Marketing",
-    desc: "Sharper site selection, catchment analysis, and customer targeting.",
+    name: "Telecom & Infrastructure",
+    desc: "Coverage gaps, site selection, and customer density across your network.",
     grad: "from-teal/30 to-accent/20",
   },
   {
     n: "04",
-    name: "Logistics",
-    desc: "Leaner routing, fleet utilization, and last-mile optimization.",
+    name: "Retail & Commercial",
+    desc: "Sharper site selection, catchment analysis, and competitor proximity.",
     grad: "from-accent/30 to-violet/20",
   },
   {
     n: "05",
-    name: "Energy & Utilities",
-    desc: "Grid, asset, and risk management across vast distributed networks.",
+    name: "Insurance & Risk",
+    desc: "Hazard proximity, flood-zone exposure, and risk classification, on demand.",
     grad: "from-teal/30 to-violet/20",
   },
   {
     n: "06",
-    name: "Public Sector",
-    desc: "Evidence-based planning and resource allocation for communities.",
+    name: "Logistics & Supply Chain",
+    desc: "Warehouse siting, delivery zones, and route planning across regions.",
     grad: "from-accent/30 to-teal/20",
   },
 ];
@@ -50,7 +50,7 @@ export default function Industry() {
           index="05"
           label="By industry"
           title="What's happening in your industry?"
-          description="Discover how leading organizations across sectors put spatial intelligence to work. Scroll to explore."
+          description="Discover how teams across sectors put natural-language spatial analysis to work. Scroll to explore."
         />
       </div>
 

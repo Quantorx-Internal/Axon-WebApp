@@ -7,7 +7,7 @@ import { scrollTo } from "@/lib/scrollTo";
 
 const platformLinks = [
   { label: "Overview", id: "platform" },
-  { label: "AXON AI Assistant", id: "showcase" },
+  { label: "AXON Agent", id: "showcase" },
   { label: "Pricing", id: "plans" },
   { label: "Security", id: "enterprise" },
 ];
@@ -101,8 +101,8 @@ export default function Footer() {
           <div className="flex flex-col gap-5 max-w-xs">
             <AxonLogo variant="light" onClick={() => scrollTo("hero", 0)} />
             <p className="text-white/55 leading-relaxed">
-              The agentic AI GIS intelligence platform — built for enterprise
-              scale, designed for effortless collaboration.
+              Natural-language GIS intelligence — ask your spatial data anything,
+              in English or Arabic, and get instant maps and answers.
             </p>
             <p className="font-mono text-xs uppercase tracking-[0.12em] text-white/35">
               Powered by QuantorX

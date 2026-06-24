@@ -16,26 +16,25 @@ const Icon = ({ path, className }) => (
   </svg>
 );
 
-const certs = ["SOC 2 Type II", "SSO / SAML", "RBAC", "Audit logs", "GDPR", "HIPAA-ready"];
+const certs = ["SSO / SAML", "RBAC", "Audit logs", "TLS 1.3", "Data residency", "On-prem ready"];
 
 const smallCards = [
   {
-    label: "Scale",
-    title: "Billions of rows, in place",
-    desc: "No data movement, no sampling, no performance cliffs.",
+    label: "Your data",
+    title: "Connect, don't move",
+    desc: "Query PostGIS, Oracle, SQL Server, and ArcGIS in place — no copies, no ETL.",
     path: (
       <>
-        <path d="M3 3v18h18" />
-        <rect x="7" y="11" width="3" height="6" />
-        <rect x="12" y="7" width="3" height="10" />
-        <rect x="17" y="13" width="3" height="4" />
+        <ellipse cx="12" cy="5" rx="8" ry="3" />
+        <path d="M4 5v6a8 3 0 0 0 16 0V5" />
+        <path d="M4 11v6a8 3 0 0 0 16 0v-6" />
       </>
     ),
   },
   {
     label: "Deploy",
     title: "Cloud or self-hosted",
-    desc: "Run fully managed or inside your own VPC — your stack, your rules.",
+    desc: "Run fully managed or inside your own VPC, data center, or air-gapped network.",
     path: (
       <>
         <path d="M17.5 19a4.5 4.5 0 0 0 0-9h-1.8A7 7 0 1 0 4 15.3" />
@@ -46,8 +45,8 @@ const smallCards = [
   },
   {
     label: "Developer-first",
-    title: "API, SDKs, AI agents & MCP",
-    desc: "Automate everything with a full REST & GraphQL surface.",
+    title: "REST API & MCP tools",
+    desc: "Automate chat, spatial analysis, and live map actions over a clean API.",
     path: (
       <>
         <path d="m16 18 6-6-6-6" />
@@ -85,15 +84,16 @@ export default function Enterprise() {
                   <Icon path={<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z" />} className="w-5 h-5" />
                 </span>
                 <span className="font-mono text-xs uppercase tracking-[0.14em] text-white/50">
-                  Security &amp; compliance
+                  Security &amp; governance
                 </span>
               </div>
               <h3 className="font-display text-2xl md:text-3xl font-medium text-white tracking-[-0.03em] max-w-md leading-snug">
-                Governed end to end, certified by default
+                Governed end to end
               </h3>
               <p className="text-white/55 leading-relaxed mt-3 max-w-md">
-                SSO, granular roles, and audit logs on demand keep your most
-                sensitive spatial data locked down and compliant.
+                SSO, granular roles, and on-demand audit logs keep your most
+                sensitive spatial data locked down — in the cloud or inside your
+                own network.
               </p>
             </div>
             <div className="relative flex flex-wrap gap-2 mt-8">
@@ -128,9 +128,9 @@ export default function Enterprise() {
             </span>
             <div>
               <div className="font-display text-5xl font-semibold text-ink tracking-[-0.04em]">
-                <Counter value={120} suffix="ms" />
+                <Counter value={100} suffix="ms" />
               </div>
-              <p className="text-ink-soft mt-1">p95 query latency</p>
+              <p className="text-ink-soft mt-1">streaming first-token latency</p>
             </div>
           </div>
 
