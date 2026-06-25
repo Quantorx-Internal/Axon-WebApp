@@ -8,6 +8,7 @@ import { Magnetic } from "../../components/Magnetic";
 import { Eyebrow } from "../../components/Eyebrow";
 import { SectionHeader } from "../../components/SectionHeader";
 import { Reveal, WordReveal } from "../../components/Reveal";
+import { Parallax } from "../../components/Parallax";
 import { scrollTo } from "@/lib/scrollTo";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -64,7 +65,20 @@ export default function Hero() {
         ref={heroRef}
         className="relative w-full min-h-[100svh] bg-ink-900 overflow-hidden grain flex flex-col"
       >
-        <AnimatedAurora className="absolute inset-0 w-full h-full" />
+        {/* parallax cinematic city backdrop (Dubai / Gulf skyline + interchange) */}
+        <Parallax amount={9} className="absolute inset-x-0 -top-[8%] h-[118%]">
+          <img
+            src="/hero-city.jpg"
+            alt=""
+            aria-hidden="true"
+            className="w-full h-full object-cover object-center"
+          />
+        </Parallax>
+        <div className="absolute inset-0 bg-gradient-to-r from-ink-900 via-ink-900/88 to-ink-900/35" />
+        <div className="absolute inset-0 bg-gradient-to-t from-ink-900 via-ink-900/30 to-ink-900/55" />
+        {/* subtle brand-cool tint to unify the warm photo with the palette */}
+        <div className="absolute inset-0 bg-[#062a52]/30 mix-blend-multiply" />
+        <AnimatedAurora className="absolute inset-0 w-full h-full opacity-30 mix-blend-screen" />
         <div className="absolute inset-0 vignette pointer-events-none" />
 
         <Header dark />

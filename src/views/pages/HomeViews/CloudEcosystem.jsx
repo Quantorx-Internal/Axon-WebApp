@@ -62,6 +62,15 @@ export default function CloudEcosystem() {
 
           {/* Deploy anywhere (dark) */}
           <Reveal className="relative overflow-hidden rounded-3xl bg-ink-900 p-7 md:p-8 flex flex-col">
+            <img
+              src="/unsplash-city-grid.jpg"
+              alt=""
+              aria-hidden="true"
+              loading="lazy"
+              decoding="async"
+              className="absolute inset-0 w-full h-full object-cover opacity-25"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-ink-900 via-ink-900/90 to-ink-900/65" />
             <div
               className="absolute -top-16 -right-12 w-60 h-60 pointer-events-none opacity-70"
               style={{

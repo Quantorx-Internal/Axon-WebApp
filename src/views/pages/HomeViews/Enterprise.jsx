@@ -71,6 +71,16 @@ export default function Enterprise() {
         <Reveal className="grid lg:grid-cols-3 gap-4 md:gap-5 mt-14 auto-rows-fr">
           {/* Anchor: security (dark, spans 2x2) */}
           <div className="lg:col-span-2 lg:row-span-2 relative overflow-hidden rounded-3xl bg-ink-900 p-8 md:p-10 flex flex-col justify-between min-h-[300px]">
+            {/* moody data-center photo backdrop */}
+            <img
+              src="/unsplash-datacenter.jpg"
+              alt=""
+              aria-hidden="true"
+              loading="lazy"
+              decoding="async"
+              className="absolute inset-0 w-full h-full object-cover opacity-35"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-ink-900 via-ink-900/85 to-ink-900/55" />
             <div
               className="absolute -top-20 -right-16 w-80 h-80 pointer-events-none opacity-70"
               style={{

@@ -26,7 +26,11 @@ export default function SpatialData() {
   return (
     <section className="w-full px-5 md:px-8 py-16 md:py-24">
       <div className="relative max-w-7xl mx-auto rounded-[2rem] overflow-hidden bg-ink-900 grain">
-        <AnimatedAurora className="absolute inset-0 w-full h-full" />
+        <Parallax amount={12} className="absolute inset-x-0 -top-[14%] h-[128%]">
+          <img src="/cta-city.jpg" alt="" aria-hidden="true" loading="lazy" decoding="async" className="w-full h-full object-cover object-center" />
+        </Parallax>
+        <div className="absolute inset-0 bg-gradient-to-tr from-ink-900/94 via-ink-900/78 to-ink-900/90" />
+        <div className="absolute inset-0 bg-[#062a52]/30 mix-blend-multiply" />
         <div className="absolute inset-0 vignette pointer-events-none" />
 
         <div className="relative z-10 px-6 md:px-16 py-20 md:py-28 flex flex-col items-start max-w-3xl">

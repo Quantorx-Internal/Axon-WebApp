@@ -2,6 +2,7 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { SectionHeader } from "../../components/SectionHeader";
 import { Reveal } from "../../components/Reveal";
+import { scrollTo } from "@/lib/scrollTo";
 
 const ease = [0.22, 1, 0.36, 1];
 
@@ -82,15 +83,48 @@ export default function FAQ() {
   const [open, setOpen] = useState(0);
 
   return (
-    <section className="w-full bg-white section-pad px-5 md:px-8">
-      <div className="max-w-7xl mx-auto grid lg:grid-cols-[0.8fr_1.2fr] gap-10 lg:gap-16">
-        <SectionHeader
-          index="✦"
-          label="FAQ"
-          title="Questions, answered"
-          description="The things teams ask us most before they bring AXON to their own data."
-          className="lg:sticky lg:top-28 self-start"
-        />
+    <section className="relative w-full bg-white section-pad px-5 md:px-8 overflow-hidden">
+      <div
+        className="pointer-events-none absolute inset-x-0 top-0 h-[55%]"
+        style={{
+          background:
+            "radial-gradient(55% 50% at 50% 0%, rgba(2,111,227,0.05), transparent 70%)",
+        }}
+      />
+      <div className="relative max-w-7xl mx-auto grid lg:grid-cols-[0.8fr_1.2fr] gap-10 lg:gap-16">
+        <div className="lg:sticky lg:top-28 self-start flex flex-col gap-8">
+          <SectionHeader
+            index="✦"
+            label="FAQ"
+            title="Questions, answered"
+            description="The things teams ask us most before they bring AXON to their own data."
+          />
+
+          {/* premium contact card */}
+          <div className="hidden lg:block relative rounded-2xl overflow-hidden border border-line shadow-soft">
+            <img
+              src="/unsplash-city-aerial.jpg"
+              alt=""
+              aria-hidden="true"
+              loading="lazy"
+              decoding="async"
+              className="w-full h-48 object-cover"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-ink-900/92 via-ink-900/45 to-transparent" />
+            <div className="absolute inset-0 p-5 flex flex-col justify-end">
+              <p className="font-display text-lg font-medium text-white">
+                Still have questions?
+              </p>
+              <button
+                onClick={() => scrollTo("request-demo", 90)}
+                className="group mt-1.5 inline-flex w-fit items-center gap-2 font-mono text-[0.7rem] uppercase tracking-[0.1em] text-white/80 hover:text-white transition-colors bg-transparent border-none cursor-pointer p-0"
+              >
+                Talk to our team
+                <span className="transition-transform group-hover:translate-x-1">→</span>
+              </button>
+            </div>
+          </div>
+        </div>
 
         <Reveal>
           <div className="flex flex-col">
