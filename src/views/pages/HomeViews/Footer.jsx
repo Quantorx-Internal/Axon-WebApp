@@ -7,7 +7,7 @@ import { CONTACT, activeSocials } from "@/lib/site";
 
 const platformLinks = [
   { label: "Overview", id: "platform" },
-  { label: "AXON Agent", id: "showcase" },
+  { label: "AXON Agent", id: "platform" },
   { label: "How it works", id: "how" },
   { label: "Pricing", id: "plans" },
 ];

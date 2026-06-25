@@ -2,6 +2,7 @@ import Button from "../../components/Button";
 import { SectionHeader } from "../../components/SectionHeader";
 import { Reveal } from "../../components/Reveal";
 import { Magnetic } from "../../components/Magnetic";
+import { SpotlightCard } from "../../components/SpotlightCard";
 import { scrollTo } from "@/lib/scrollTo";
 
 const deploymentIcons = [
@@ -98,7 +99,7 @@ export default function Plans() {
     <section className="w-full bg-mist section-pad px-5 md:px-8">
       <div className="max-w-7xl mx-auto">
         <SectionHeader
-          index="06"
+          index="05"
           label="Pricing"
           title="Predictable pricing for spatial analytics at scale"
           description="Straightforward, up-front pricing with no hidden add-ons. Focus on your work, not your licenses."
@@ -109,9 +110,10 @@ export default function Plans() {
           {plansData.map((plan) => {
             const dark = plan.highlight;
             return (
-              <div
+              <SpotlightCard
                 key={plan.title}
-                className={`relative flex flex-col rounded-[1.75rem] p-7 md:p-8 overflow-hidden transition-all duration-500 ease-smooth ${
+                glow={dark ? "rgba(34,211,204,0.18)" : "rgba(2,111,227,0.14)"}
+                className={`flex flex-col rounded-[1.75rem] p-7 md:p-8 transition-all duration-500 ease-smooth ${
                   dark
                     ? "bg-ink-900 grain text-white lg:-translate-y-4 shadow-lift"
                     : "bg-white border border-line shadow-soft hover:shadow-card hover:-translate-y-1.5"
@@ -205,7 +207,7 @@ export default function Plans() {
                     </li>
                   ))}
                 </ul>
-              </div>
+              </SpotlightCard>
             );
           })}
         </Reveal>

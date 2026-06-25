@@ -162,7 +162,7 @@ export default function RequestDemo() {
           {/* Left — editorial statement */}
           <Reveal className="lg:sticky lg:top-28 flex flex-col gap-6">
             <div className="flex items-center gap-3 font-mono text-xs uppercase tracking-[0.14em]">
-              <span className="text-ink-muted">07</span>
+              <span className="text-ink-muted">06</span>
               <span className="h-px w-7 bg-ink/20" />
               <span className="text-accent">Get in touch</span>
             </div>

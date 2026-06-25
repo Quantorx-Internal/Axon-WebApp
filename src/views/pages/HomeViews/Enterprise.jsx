@@ -62,7 +62,7 @@ export default function Enterprise() {
     <section className="w-full bg-mesh-soft section-pad px-5 md:px-8">
       <div className="max-w-7xl mx-auto">
         <SectionHeader
-          index="03"
+          index="02"
           label="Enterprise-grade"
           title="Built for the enterprise"
           description="Enterprise-grade infrastructure with unmatched performance, security, and reliability — at any scale."
@@ -142,9 +142,10 @@ export default function Enterprise() {
               className="group rounded-3xl border border-line bg-white p-7 hover:border-ink/20 hover:-translate-y-1 transition-all duration-500 ease-smooth"
             >
               <div className="flex items-center gap-3 mb-5">
-                <span className="w-10 h-10 rounded-xl bg-cloud flex items-center justify-center text-ink group-hover:bg-ink group-hover:text-white transition-colors duration-300">
-                  <Icon path={c.path} className="w-5 h-5" />
-                </span>
+                <Icon
+                  path={c.path}
+                  className="w-7 h-7 text-accent transition-all duration-300 group-hover:text-ink group-hover:scale-110 origin-left"
+                />
                 <span className="font-mono text-xs uppercase tracking-[0.14em] text-ink-muted">
                   {c.label}
                 </span>

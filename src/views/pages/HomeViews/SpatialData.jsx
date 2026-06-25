@@ -1,4 +1,4 @@
-import { AnimatedAurora } from "../../components/AnimatedAurora";
+import { Parallax } from "../../components/Parallax";
 import { Magnetic } from "../../components/Magnetic";
 import { Eyebrow } from "../../components/Eyebrow";
 import { Reveal, WordReveal } from "../../components/Reveal";

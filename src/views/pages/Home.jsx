@@ -1,7 +1,6 @@
 import Hero from "./HomeViews/Hero";
 import PlatformUsers from "./HomeViews/PlatformUsers";
 import TrustedWorldwide from "./HomeViews/TrustedWorldwide";
-import PlatformShowcase from "./HomeViews/PlatformShowcase";
 import Enterprise from "./HomeViews/Enterprise";
 import CloudEcosystem from "./HomeViews/CloudEcosystem";
 import Industry from "./HomeViews/Industry";
@@ -39,9 +38,6 @@ export default function Home() {
       </section>
       <section id="platform">
         <PlatformUsers />
-      </section>
-      <section id="showcase">
-        <PlatformShowcase />
       </section>
       <section id="enterprise">
         <Enterprise />

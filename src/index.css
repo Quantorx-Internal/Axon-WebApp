@@ -205,7 +205,9 @@ html.lenis body {
   .animate-marquee,
   .animate-float,
   .animate-spin-slow,
-  .animate-pulse-soft {
+  .animate-pulse-soft,
+  .animate-flow,
+  .animate-flow-y {
     animation: none !important;
   }
 }

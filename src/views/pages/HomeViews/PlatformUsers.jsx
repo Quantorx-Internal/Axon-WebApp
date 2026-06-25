@@ -133,7 +133,7 @@ export default function PlatformUsers() {
                 ))}
               </ul>
               <button
-                onClick={() => scrollTo("showcase", 90)}
+                onClick={() => scrollTo("watch", 90)}
                 className="group mt-7 inline-flex items-center gap-2 font-mono text-xs uppercase tracking-[0.1em] text-ink hover:text-accent transition-colors bg-transparent border-none cursor-pointer p-0"
               >
                 See it in action

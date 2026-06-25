@@ -12,7 +12,7 @@ const NAV = [
     brace: true,
     menu: [
       { label: "Ask in plain language", id: "platform", hint: "Natural language · EN + AR" },
-      { label: "Maps & visualization", id: "showcase", hint: "Interactive ArcGIS layers" },
+      { label: "Maps & visualization", id: "platform", hint: "Interactive ArcGIS layers" },
       { label: "Spatial analysis", id: "platform", hint: "25+ operations" },
       { label: "How it works", id: "how", hint: "From question to answer" },
     ],

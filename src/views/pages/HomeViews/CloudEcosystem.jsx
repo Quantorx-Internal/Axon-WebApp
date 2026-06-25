@@ -28,7 +28,7 @@ export default function CloudEcosystem() {
     <section className="w-full bg-white section-pad px-5 md:px-8">
       <div className="max-w-7xl mx-auto">
         <SectionHeader
-          index="04"
+          index="03"
           label="Integrations"
           title="Connect your spatial data, deploy anywhere"
           description="Connect the spatial databases and ArcGIS services you already run, then deploy in the cloud or self-host in your own environment."
