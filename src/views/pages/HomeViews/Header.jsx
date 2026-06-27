@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import { IoIosArrowDown } from "react-icons/io";
 import Button from "../../components/Button";
-import { AxonLogo } from "../../components/AxonLogo";
 import { MenuOverlay } from "../../components/MenuOverlay";
 import { scrollTo } from "@/lib/scrollTo";
 
@@ -114,10 +113,18 @@ export default function Header({ dark = false }) {
       }`}
     >
       <header className="w-full max-w-7xl mx-auto flex justify-between items-center px-5 md:px-8 h-16 md:h-[4.5rem]">
-        <AxonLogo
-          variant={overDark ? "light" : "dark"}
+        <button
+          type="button"
           onClick={() => scrollTo("hero", 0)}
-        />
+          aria-label="AXON home"
+          className="bg-transparent border-none cursor-pointer p-0"
+        >
+          <img
+            src="/HeaderLogo.png"
+            alt="AXON"
+            className="h-7 md:h-8 w-auto"
+          />
+        </button>
 
         <nav className="hidden lg:flex items-center gap-7">
           {NAV.map((item) =>
