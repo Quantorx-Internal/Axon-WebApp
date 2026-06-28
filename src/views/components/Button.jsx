@@ -33,6 +33,7 @@ export default function Button({
   withArrow = false,
   bullet = true,
   type = "button",
+  disabled = false,
 }) {
   const classes = cn(base, variants[variant] || variants.primary, className);
 
@@ -60,7 +61,7 @@ export default function Button({
   }
 
   return (
-    <button className={classes} onClick={onClick} type={type}>
+    <button className={classes} onClick={onClick} type={type} disabled={disabled}>
       {content}
     </button>
   );

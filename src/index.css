@@ -35,8 +35,7 @@
   }
 
   ::selection {
-    background: rgba(2, 111, 227, 0.16);
-    color: var(--ink);
+    background: rgba(2, 111, 227, 0.28);
   }
 
   /* Visible keyboard focus — shown for keyboard users, not mouse/touch. */

@@ -105,14 +105,18 @@ export default function Header({ dark = false }) {
     : "text-ink-soft hover:text-ink";
 
   return (
-    <div
-      className={`fixed top-0 left-0 right-0 z-[100] transition-all duration-500 ease-smooth ${
-        scrolled
-          ? "bg-white/85 backdrop-blur-xl border-b border-line"
-          : "bg-transparent border-b border-transparent"
-      }`}
-    >
-      <header className="w-full max-w-7xl mx-auto flex justify-between items-center px-5 md:px-8 h-16 md:h-[4.5rem]">
+    <div className="fixed top-0 left-0 right-0 z-[100]">
+      {/* Backdrop as absolute child — keeps backdrop-filter off the wrapper so
+          MenuOverlay's fixed inset-0 positions relative to the viewport, not here */}
+      <div
+        aria-hidden="true"
+        className={`absolute inset-0 transition-all duration-500 ease-smooth pointer-events-none ${
+          scrolled
+            ? "bg-white/85 backdrop-blur-xl border-b border-line"
+            : "bg-transparent border-b border-transparent"
+        }`}
+      />
+      <header className="relative w-full max-w-7xl mx-auto flex justify-between items-center px-5 md:px-8 h-16 md:h-[4.5rem]">
         <button
           type="button"
           onClick={() => scrollTo("hero", 0)}
@@ -120,7 +124,7 @@ export default function Header({ dark = false }) {
           className="bg-transparent border-none cursor-pointer p-0"
         >
           <img
-            src="/HeaderLogo.png"
+            src={overDark ? "/HeaderLogo.png" : "/HeaderLogoBlack.png"}
             alt="AXON"
             className="h-7 md:h-8 w-auto"
           />

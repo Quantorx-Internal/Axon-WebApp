@@ -121,7 +121,13 @@ export default function Footer() {
                 {CONTACT.email}
               </a>
               <a href={CONTACT.phoneHref} className="text-white/65 hover:text-white transition-colors">
-                {CONTACT.phoneDisplay}
+                {CONTACT.USPhoneDisplay}
+              </a>
+               <a href={CONTACT.phoneHref} className="text-white/65 hover:text-white transition-colors">
+                {CONTACT.KSAPhoneDisplay}
+              </a>
+               <a href={CONTACT.phoneHref} className="text-white/65 hover:text-white transition-colors">
+                {CONTACT.EGPPhoneDisplay}
               </a>
               <span className="text-white/65">{CONTACT.location}</span>
             </div>

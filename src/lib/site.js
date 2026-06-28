@@ -9,8 +9,11 @@ export const CONTACT = {
   company: "QuantorX",
   website: "https://www.quantorx.com/",
   websiteDisplay: "quantorx.com",
-  email: "info@axon.ai",
-  phoneDisplay: "+20 100 000 0000",
+  email: "innovation@quantorx.com",
+  sendEmail: "maldemery@quantorx.com",
+  USPhoneDisplay: "+18134471388",
+  KSAPhoneDisplay: "+966537507578",
+  EGPPhoneDisplay: "+201119974983",
   phoneHref: "tel:+201000000000",
   location: "Cairo, Egypt",
 };

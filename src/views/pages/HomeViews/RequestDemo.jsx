@@ -6,7 +6,7 @@ import { useState, useRef, useEffect } from "react";
 import { Magnetic } from "../../components/Magnetic";
 import { Reveal } from "../../components/Reveal";
 import { CONTACT } from "@/lib/site";
-
+const BREVO_API_KEY = import.meta.env.VITE_BREVO_API_KEY;
 const inputBase =
   "w-full bg-white text-ink placeholder:text-ink-muted border border-line focus:outline-none focus:ring-2 focus:ring-accent/40 focus:border-accent rounded-xl py-3 px-4 text-base transition-shadow";
 
@@ -78,6 +78,8 @@ export default function RequestDemo() {
   const [errors, setErrors] = useState({});
   const [phone, setPhone] = useState("");
   const [submitted, setSubmitted] = useState(false);
+  const [sending, setSending] = useState(false);
+  const [sendError, setSendError] = useState("");
   const [, setDisplayPhone] = useState("");
   const [formData, setFormData] = useState({
     firstName: "",
@@ -104,7 +106,7 @@ export default function RequestDemo() {
     return newErrors;
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const newErrors = validate();
     if (Object.keys(newErrors).length > 0) {
@@ -112,31 +114,105 @@ export default function RequestDemo() {
       return;
     }
     setErrors({});
+    setSendError("");
+    setSending(true);
 
-    const rows = [
-      `Name: ${formData.firstName} ${formData.lastName}`,
-      `Work email: ${formData.email}`,
-      `Phone: +${phone}`,
-      `Company: ${formData.company}`,
-      `Company name: ${formData.companyName}`,
-      `Job title: ${formData.jobTitle}`,
-      `Employees: ${formData.employees}`,
-      `Already uses geospatial: ${formData.geospatial}`,
-      formData.geospatial === "Yes" && formData.storage
-        ? `Spatial data store: ${formData.storage}`
-        : null,
-    ].filter(Boolean);
+    const fullName = `${formData.firstName} ${formData.lastName}`;
 
-    const subject = `AXON demo request — ${formData.company || formData.companyName}`;
-    const body = `Hi AXON team,\n\nI'd like to request a demo.\n\n${rows.join(
-      "\n"
-    )}\n\nThanks,\n${formData.firstName}`;
+    const htmlContent = `<div style="font-family: system-ui, -apple-system, Arial, sans-serif; background: #f0f2f5; padding: 20px 12px;">
+  <div style="max-width: 560px; margin: auto;">
 
-    window.location.href = `mailto:${CONTACT.email}?subject=${encodeURIComponent(
-      subject
-    )}&body=${encodeURIComponent(body)}`;
+    <!-- Header -->
+    <div style="background: #111; padding: 20px 24px; border-radius: 16px 16px 0 0;">
+      <table width="100%" cellpadding="0" cellspacing="0">
+        <tr>
+          <td style="font-size: 18px; font-weight: 800; color: #fff;">AX<span style="color:#3b9eff">O</span>N</td>
+          <td align="right"><span style="background: #1e3a5f; color: #3b9eff; font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; padding: 4px 10px; border-radius: 20px;">New demo request</span></td>
+        </tr>
+      </table>
+    </div>
 
-    setSubmitted(true);
+    <!-- Body -->
+    <div style="background: #fff; padding: 28px 24px; border-left: 1px solid #e8eaed; border-right: 1px solid #e8eaed;">
+
+      <p style="font-size: 10px; font-weight: 700; color: #3b9eff; letter-spacing: 0.14em; text-transform: uppercase; margin: 0 0 6px;">06 —— Get in touch</p>
+      <h1 style="font-size: 22px; font-weight: 800; color: #111; margin: 0 0 8px;">New demo request<span style="color:#3b9eff">.</span></h1>
+      <p style="font-size: 13px; color: #888; line-height: 1.65; margin: 0 0 24px;">Someone submitted a demo request. Here's what they shared.</p>
+
+      <div style="height: 1px; background: #f0f0f0; margin-bottom: 4px;"></div>
+
+      <!-- Rows -->
+      <table width="100%" cellpadding="0" cellspacing="0">
+        <tr><td style="padding: 12px 0; border-bottom: 1px solid #f3f3f3; font-size: 12px; color: #999; width: 45%;">Name</td><td style="padding: 12px 0; border-bottom: 1px solid #f3f3f3; font-size: 13px; color: #111; font-weight: 600; text-align: right;">${fullName}</td></tr>
+        <tr><td style="padding: 12px 0; border-bottom: 1px solid #f3f3f3; font-size: 12px; color: #999;">Work email</td><td style="padding: 12px 0; border-bottom: 1px solid #f3f3f3; font-size: 13px; color: #3b9eff; font-weight: 600; text-align: right;">${formData.email}</td></tr>
+        <tr><td style="padding: 12px 0; border-bottom: 1px solid #f3f3f3; font-size: 12px; color: #999;">Phone</td><td style="padding: 12px 0; border-bottom: 1px solid #f3f3f3; font-size: 13px; color: #111; font-weight: 600; text-align: right;">+${phone}</td></tr>
+        <tr><td style="padding: 12px 0; border-bottom: 1px solid #f3f3f3; font-size: 12px; color: #999;">Company</td><td style="padding: 12px 0; border-bottom: 1px solid #f3f3f3; font-size: 13px; color: #111; font-weight: 600; text-align: right;">${formData.company}</td></tr>
+        <tr><td style="padding: 12px 0; border-bottom: 1px solid #f3f3f3; font-size: 12px; color: #999;">Company name</td><td style="padding: 12px 0; border-bottom: 1px solid #f3f3f3; font-size: 13px; color: #111; font-weight: 600; text-align: right;">${formData.companyName}</td></tr>
+        <tr><td style="padding: 12px 0; border-bottom: 1px solid #f3f3f3; font-size: 12px; color: #999;">Job title</td><td style="padding: 12px 0; border-bottom: 1px solid #f3f3f3; font-size: 13px; color: #111; font-weight: 600; text-align: right;">${formData.jobTitle}</td></tr>
+        <tr><td style="padding: 12px 0; border-bottom: 1px solid #f3f3f3; font-size: 12px; color: #999;">Employees</td><td style="padding: 12px 0; border-bottom: 1px solid #f3f3f3; font-size: 13px; color: #111; font-weight: 600; text-align: right;">${formData.employees}</td></tr>
+        <tr><td style="padding: 12px 0; border-bottom: 1px solid #f3f3f3; font-size: 12px; color: #999;">Geo storage</td><td style="padding: 12px 0; border-bottom: 1px solid #f3f3f3; font-size: 13px; color: #111; font-weight: 600; text-align: right;">${formData.storage || "N/A"}</td></tr>
+        <tr><td style="padding: 12px 0; font-size: 12px; color: #999;">Uses geo tech?</td><td style="padding: 12px 0; text-align: right;"><span style="background: #eef5ff; color: #3b9eff; font-size: 11px; font-weight: 600; padding: 3px 10px; border-radius: 20px;">${formData.geospatial}</span></td></tr>
+      </table>
+
+      <!-- Bullets -->
+      <div style="background: #f8f9fb; border-radius: 12px; padding: 16px 18px; margin-top: 24px;">
+        <table width="100%" cellpadding="0" cellspacing="0">
+          <tr>
+            <td valign="top" width="28" style="padding-bottom: 12px;"><span style="background: #eef5ff; color: #3b9eff; font-size: 10px; font-weight: 700; padding: 3px 6px; border-radius: 50%;">01</span></td>
+            <td style="padding-bottom: 12px; font-size: 13px; color: #555; line-height: 1.5; border-bottom: 1px solid #eee;">Focused 20-min walkthrough with a GIS + AI specialist</td>
+          </tr>
+          <tr><td colspan="2" style="height: 12px;"></td></tr>
+          <tr>
+            <td valign="top" width="28" style="padding-bottom: 12px;"><span style="background: #eef5ff; color: #3b9eff; font-size: 10px; font-weight: 700; padding: 3px 6px; border-radius: 50%;">02</span></td>
+            <td style="padding-bottom: 12px; font-size: 13px; color: #555; line-height: 1.5; border-bottom: 1px solid #eee;">Tailored look at their industry workflows, in English or Arabic</td>
+          </tr>
+          <tr><td colspan="2" style="height: 12px;"></td></tr>
+          <tr>
+            <td valign="top" width="28"><span style="background: #eef5ff; color: #3b9eff; font-size: 10px; font-weight: 700; padding: 3px 6px; border-radius: 50%;">03</span></td>
+            <td style="font-size: 13px; color: #555; line-height: 1.5;">Answers on deployment, security, and pricing</td>
+          </tr>
+        </table>
+      </div>
+
+    </div>
+
+    <!-- Footer -->
+    <div style="background: #111; border-radius: 0 0 16px 16px; padding: 16px 24px; text-align: center;">
+      <p style="color: #555; font-size: 11px; margin: 0;">Sent automatically from your AXON demo request form.</p>
+    </div>
+
+  </div>
+</div>`;
+
+    try {
+      const res = await fetch("https://api.brevo.com/v3/smtp/email", {
+        method: "POST",
+        headers: {
+          "accept": "application/json",
+          "api-key": BREVO_API_KEY,
+          "content-type": "application/json",
+        },
+        body: JSON.stringify({
+          sender: { name: "AXON Demo Form", email: "maro.salah110@gmail.com" },
+          to: [{ email: "maldemery@quantorx.com", name: "AXON Team" }],
+          replyTo: { email: formData.email, name: fullName },
+          subject: `Demo Request — ${fullName} · ${formData.company}`,
+          htmlContent,
+        }),
+      });
+
+      if (!res.ok) {
+        const err = await res.json().catch(() => ({}));
+        throw new Error(err.message || `HTTP ${res.status}`);
+      }
+
+      setSubmitted(true);
+    } catch (err) {
+      console.error("Brevo error:", err);
+      setSendError(`Failed to send: ${err.message}. Please email us directly.`);
+    } finally {
+      setSending(false);
+    }
   };
 
   const resetForm = () => {
@@ -201,11 +277,11 @@ export default function RequestDemo() {
                   Thanks{formData.firstName ? `, ${formData.firstName}` : ""}!
                 </h3>
                 <p className="text-ink-soft leading-relaxed mt-3 max-w-sm">
-                  Your demo request is ready in your email app — just hit send and
-                  we&rsquo;ll be in touch within one business day.
+                  We&rsquo;ve received your request and will be in touch within
+                  one business day.
                 </p>
                 <p className="text-ink-muted text-sm mt-4">
-                  Didn&rsquo;t open?{" "}
+                  Questions in the meantime?{" "}
                   <a href={`mailto:${CONTACT.email}`} className="text-accent hover:underline">
                     Email us at {CONTACT.email}
                   </a>
@@ -215,7 +291,7 @@ export default function RequestDemo() {
                   onClick={resetForm}
                   className="group mt-8 inline-flex items-center gap-2 font-mono text-xs uppercase tracking-[0.1em] text-ink hover:text-accent transition-colors bg-transparent border-none cursor-pointer"
                 >
-                  Send another request
+                  Submit another request
                   <span className="transition-transform group-hover:translate-x-1">→</span>
                 </button>
               </div>
@@ -301,12 +377,17 @@ export default function RequestDemo() {
                 submitting my personal information I accept the Privacy Notice.
               </label>
 
+              {sendError && (
+                <p className="text-red-500 text-sm">{sendError}</p>
+              )}
+
               <Magnetic>
                 <Button
-                  text="Request a demo"
+                  text={sending ? "Sending…" : "Request a demo"}
                   variant="primary"
                   type="submit"
-                  className="py-3.5 px-8 w-full sm:w-fit"
+                  className="py-3.5 px-8 w-full sm:w-fit disabled:opacity-60 disabled:cursor-not-allowed"
+                  disabled={sending}
                 />
               </Magnetic>
             </form>
