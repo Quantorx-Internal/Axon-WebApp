@@ -15,7 +15,7 @@ export const CONTACT = {
   KSAPhoneDisplay: "+966537507578",
   EGPPhoneDisplay: "+201119974983",
   phoneHref: "tel:+201000000000",
-  location: "Cairo, Egypt",
+  location: "511 W Cleveland St, STE 414, Tampa, FL 33606",
 };
 
 /**
